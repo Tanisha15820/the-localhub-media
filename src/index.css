@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════
+   🎨 THEME VARIABLES
+══════════════════════════════════════ */
+:root {
+  --bg-main:        #F5F0E8;
+  --bg-soft:        #EDE8D9;
+  --bg-card:        #F0EBE1;
+  --text-primary:   #1A1A1A;
+  --text-secondary: #8C8C8C;
+  --primary:        #D97757;
+}
+
+/* ══════════════════════════════════════
+   🌐 GLOBAL
+══════════════════════════════════════ */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ══════════════════════════════════════
+   🎯 HERO — FIXED CORAL ARROW
+══════════════════════════════════════ */
+.play-arrow {
+  width: 0;
+  height: 0;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 18px solid var(--primary);
+}
+
+.play-icon {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 9px solid var(--primary);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   📜 HERO — AUTO-SCROLL FEATURE LIST
+══════════════════════════════════════ */
+.feature-scroll-track {
+  height: 260px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.6) 12%,
+    black 25%,
+    black 75%,
+    rgba(0,0,0,0.6) 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.6) 12%,
+    black 25%,
+    black 75%,
+    rgba(0,0,0,0.6) 88%,
+    transparent 100%
+  );
+}
+
+.feature-scroll-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: featureScrollUp 9s linear infinite;
+}
+
+.feature-scroll-inner:hover {
+  animation-play-state: paused;
+}
+
+.feature-scroll-item {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.3;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.01em;
+}
+
+/* ══════════════════════════════════════
+   ✨ ANIMATIONS
+══════════════════════════════════════ */
+@keyframes featureScrollUp {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.25; }
+  50%       { opacity: 0.7;  }
+}
+
+@keyframes scroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-fadeUp        { animation: fadeUp 0.8s ease both; }
+.animate-fadeUpDelay   { animation: fadeUp 0.9s 0.2s ease both; }
+.animate-scrollPulse   { animation: scrollPulse 2s ease infinite; }
+.animate-scroll        { animation: scroll 10s linear infinite; }

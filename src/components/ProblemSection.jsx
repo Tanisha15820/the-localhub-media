@@ -1,214 +1,86 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import adsImg from "../assets/ads.png";
+import contentImg from "../assets/content.png";
+import websiteImg from "../assets/website.png";
+import brandImg from "../assets/brand.png";
 
-const AuditIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 11l3 3L22 4"/>
-    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-  </svg>
-);
+function useInView(threshold = 0.1) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
 
-const BuildIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-  </svg>
-);
-
-const GrowIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-    <polyline points="16 7 22 7 22 13"/>
-  </svg>
-);
-
-const steps = [
-  {
-    icon: <AuditIcon />,
-    tag: "Audit",
-    title: "We audit your entire digital ecosystem",
-    desc: "Brand, website, SEO, AEO, content, ads — we map exactly where you're losing ground and where the real opportunity is hiding.",
-    pills: ["Brand health", "Website review", "SEO & AEO gaps", "Content audit", "Paid ads analysis"],
-    colors: {
-      tag: "bg-blue-50 text-blue-800",
-      iconHover: "group-hover:bg-blue-50 group-hover:border-blue-400",
-      pillHover: "group-hover:border-blue-300 group-hover:text-blue-800",
-      line: "group-hover:bg-blue-200",
-    },
-  },
-  {
-    icon: <BuildIcon />,
-    tag: "Build",
-    title: "We build the infrastructure for scale",
-    desc: "Performance-grade Shopify or WordPress builds, content that ranks on Google and AI engines, and ads engineered to convert — not just spend.",
-    pills: ["Shopify & WordPress", "Rank-ready content", "Conversion-led ads", "AI engine optimisation"],
-    colors: {
-      tag: "bg-emerald-50 text-emerald-800",
-      iconHover: "group-hover:bg-emerald-50 group-hover:border-emerald-400",
-      pillHover: "group-hover:border-emerald-300 group-hover:text-emerald-800",
-      line: "group-hover:bg-emerald-200",
-    },
-  },
-  {
-    icon: <GrowIcon />,
-    tag: "Grow",
-    title: "We compound your growth month over month",
-    desc: "SEO, AEO, performance marketing, and brand — all working together, all measured, all improving. Growth that builds on itself.",
-    pills: ["Monthly reporting", "SEO compounding", "Performance marketing", "Brand momentum"],
-    colors: {
-      tag: "bg-violet-50 text-violet-800",
-      iconHover: "group-hover:bg-violet-50 group-hover:border-violet-400",
-      pillHover: "group-hover:border-violet-300 group-hover:text-violet-800",
-      line: "group-hover:bg-violet-200",
-    },
-  },
-];
-
-function useScrollReveal(ref, delay = 0) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            el.classList.remove("opacity-0", "translate-y-6");
-            el.classList.add("opacity-100", "translate-y-0");
-          }, delay);
-          obs.unobserve(el);
-        }
-      },
-      { threshold: 0.15 }
-    );
+
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        setVisible(true);
+        obs.disconnect();
+      }
+    }, { threshold });
+
     obs.observe(el);
     return () => obs.disconnect();
-  }, [ref, delay]);
+  }, [threshold]);
+
+  return [ref, visible];
 }
 
-function AnimatedEl({ delay, children, className = "" }) {
-  const ref = useRef(null);
-  useScrollReveal(ref, delay);
-  return (
-    <div ref={ref} className={`opacity-0 translate-y-6 transition-all duration-700 ease-out ${className}`}>
-      {children}
-    </div>
-  );
-}
+const PROBLEMS = [
+  {
+    img: adsImg,
+    title: "You run ads",
+    desc: "but your landing page doesn't convert.",
+    badge: "Low ROAS",
+    badgeColor: "#E05A3A",
+  },
+  {
+    img: contentImg,
+    title: "You publish content",
+    desc: "but no one finds it on Google or AI search.",
+    badge: "0 Rankings",
+    badgeColor: "#C05A32",
+  },
+  {
+    img: websiteImg,
+    title: "You have a website",
+    desc: "but it's slow, unbranded, and leaking revenue.",
+    badge: "High Bounce",
+    badgeColor: "#D97757",
+  },
+  {
+    img: brandImg,
+    title: "You have a brand",
+    desc: "but it doesn't speak to the right buyer.",
+    badge: "No Connect",
+    badgeColor: "#A8432A",
+  },
+];
 
-function Step({ step, index, isLast }) {
-  const ref = useRef(null);
-  const lineRef = useRef(null);
-  useScrollReveal(ref, 200 + index * 180);
+export default function ProblemSection() {
+  const [sectionRef, visible] = useInView(0.08);
+  const [hovered, setHovered] = useState(null);
 
-  useEffect(() => {
-    const el = ref.current;
-    const line = lineRef.current;
-    if (!el || !line) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            line.style.transform = "translateX(-50%) scaleY(1)";
-          }, 400 + index * 180);
-          obs.unobserve(el);
-        }
-      },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [index]);
-
-  return (
-    <div
-      ref={ref}
-      className="group grid opacity-0 translate-y-6 transition-all duration-700 ease-out"
-      style={{ gridTemplateColumns: "96px minmax(0,1fr)", gap: "0 2.5rem" }}
-    >
-      <div className="flex flex-col items-center pt-1 relative">
-        <div
-          className={`
-            w-20 h-20 rounded-full border-2 border-gray-200 bg-white
-            flex items-center justify-center
-            relative z-10 transition-all duration-300
-            ${step.colors.iconHover}
-            group-hover:scale-110
-          `}
-        >
-          {step.icon}
-        </div>
-
-        {!isLast && (
-          <div
-            ref={lineRef}
-            className={`absolute w-px bg-gray-200 transition-colors duration-300 ${step.colors.line}`}
-            style={{
-              left: "50%",
-              transform: "translateX(-50%) scaleY(0)",
-              transformOrigin: "top",
-              top: "84px",
-              bottom: "-48px",
-              transition: "transform 0.5s ease, background-color 0.3s ease",
-            }}
-          />
-        )}
-      </div>
-
-      <div className="pb-16">
-        <span
-          className={`
-            inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase
-            px-2.5 py-1 rounded-md mb-4
-            transition-transform duration-200 group-hover:translate-x-1
-            ${step.colors.tag}
-          `}
-        >
-          {step.tag}
-        </span>
-
-        <h3 className="text-[22px] font-medium text-gray-900 leading-snug mb-3">
-          {step.title}
-        </h3>
-
-        <p className="text-[15px] text-gray-500 leading-relaxed mb-6 max-w-lg">
-          {step.desc}
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          {step.pills.map((pill) => (
-            <span
-              key={pill}
-              className={`
-                text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1 bg-white
-                transition-all duration-200 cursor-default hover:-translate-y-0.5
-                ${step.colors.pillHover}
-              `}
-            >
-              {pill}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function PlanSection() {
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
-        .plan-section {
+        .prob-section {
           background: #F5F0E8;
           padding: 100px 24px 110px;
           font-family: 'Poppins', sans-serif;
           overflow: hidden;
           position: relative;
         }
-        .plan-header {
+
+        /* HEADER */
+        .prob-header {
           text-align: center;
           margin-bottom: 80px;
         }
-        .plan-eyebrow {
+
+        .eyebrow {
           display: inline-flex;
           align-items: center;
           gap: 8px;
@@ -218,61 +90,258 @@ export default function PlanSection() {
           padding: 6px 18px;
           margin-bottom: 24px;
         }
-        .plan-eyebrow-dot {
-          width: 7px; height: 7px;
+
+        .eyebrow-dot {
+          width: 7px;
+          height: 7px;
           border-radius: 50%;
           background: #D97757;
         }
-        .plan-eyebrow-text {
+
+        .eyebrow-text {
           font-size: 11px;
           font-weight: 700;
           color: #D97757;
           letter-spacing: 0.14em;
           text-transform: uppercase;
         }
-        .plan-main-heading {
+
+        .main-heading {
           font-size: clamp(2rem, 4.5vw, 3.4rem);
           font-weight: 800;
           color: #1A1A1A;
           line-height: 1.1;
-          margin: 0 0 18px;
         }
-        .plan-highlight { color: #D97757; }
-        .plan-subtext {
+
+        .highlight {
+          color: #D97757;
+        }
+
+        .subtext {
+          margin-top: 18px;
           color: #8C8C8C;
           max-width: 520px;
-          margin: 0 auto;
+          margin-left: auto;
+          margin-right: auto;
           line-height: 1.7;
-          font-size: 1rem;
+        }
+
+        /* FLOW */
+        .prob-row {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+        }
+
+        .prob-node {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          flex: 1;
+        }
+
+        /* IMAGE */
+        .prob-img-circle {
+          width: 175px;
+          height: 175px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 4px solid #fff;
+          box-shadow: 0 12px 40px rgba(217,119,87,0.22);
+          transition: 0.35s ease;
+        }
+
+        .prob-img-circle.hov {
+          transform: scale(1.08) translateY(-8px);
+          box-shadow: 0 28px 60px rgba(217,119,87,0.35);
+        }
+
+        .prob-img-circle img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        /* OUTER RING */
+        .prob-ring-outer {
+          position: absolute;
+          width: 230px;
+          height: 230px;
+          border-radius: 50%;
+          border: 2px dashed rgba(217,119,87,0.35);
+          top: -32px;
+          left: -32px;
+          animation: spin 14s linear infinite;
+        }
+
+        /* INNER RING */
+        .prob-ring-inner {
+          position: absolute;
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          border: 2px dashed rgba(217,119,87,0.18);
+          top: -18px;
+          left: -18px;
+          animation: spin-rev 10s linear infinite;
+        }
+
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-rev {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(-360deg); }
+        }
+
+        /* BADGE */
+        .prob-badge {
+          position: absolute;
+          bottom: -8px;
+          right: -10px;
+          padding: 5px 12px;
+          border-radius: 999px;
+          font-size: 10px;
+          font-weight: 800;
+          color: #fff;
+          text-transform: uppercase;
+        }
+
+        /* TEXT */
+        .prob-title {
+          margin-top: 26px;
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: #1A1A1A;
+        }
+
+        .prob-desc {
+          font-size: 0.95rem;
+          color: #8C8C8C;
+          max-width: 180px;
+          line-height: 1.6;
+        }
+
+        .prob-conn-svg {
+          width: 80px;
+          margin-top: 80px;
+        }
+
+        /* BOTTOM SECTION */
+        .bottom-text {
+          text-align: center;
+          margin-top: 70px;
+        }
+
+        .bottom-main {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #1A1A1A;
+        }
+
+        .pill {
+          display: inline-flex;
+          gap: 10px;
+          margin-top: 28px;
+          padding: 14px 30px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #1A1A1A, #2D1810);
+          color: #fff;
+          font-weight: 700;
+        }
+
+        @media (max-width: 820px) {
+          .prob-row {
+            flex-direction: column;
+            gap: 50px;
+          }
         }
       `}</style>
 
-      <section className="plan-section">
-        <div className="plan-header">
-          <div className="plan-eyebrow">
-            <div className="plan-eyebrow-dot" />
-            <span className="plan-eyebrow-text">The Plan</span>
+      <section className="prob-section" ref={sectionRef}>
+
+        {/* HEADER */}
+        <div className="prob-header">
+          <div className="eyebrow">
+            <div className="eyebrow-dot" />
+            <span className="eyebrow-text">The Problem</span>
           </div>
-          <h2 className="plan-main-heading">
-            A complete growth system —<br />
-            <span className="plan-highlight">built in three moves.</span>
+
+          <h2 className="main-heading">
+            Most D2C brands are <span className="highlight">losing money</span>
+            <br />on their digital presence.
           </h2>
-          <p className="plan-subtext">
-            Not three random services.{" "}
-            <b style={{ color: "#1A1A1A" }}>One connected system that compounds.</b>
+
+          <p className="subtext">
+            Not because they're not working hard enough.{" "}
+            <b style={{ color: "#1A1A1A" }}>Because they're working in silos.</b>
           </p>
         </div>
 
-        <div style={{ maxWidth: "720px", margin: "0 auto" }}>
-          {steps.map((step, i) => (
-            <Step
-              key={step.tag}
-              step={step}
-              index={i}
-              isLast={i === steps.length - 1}
-            />
+        {/* FLOW */}
+        <div className="prob-row">
+
+          {PROBLEMS.map((item, i) => (
+            <>
+              <div
+                key={i}
+                className="prob-node"
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                <div style={{ position: "relative", width: 175, height: 175 }}>
+
+                  <div className="prob-ring-outer" style={{ opacity: hovered === i ? 1 : 0 }} />
+                  <div className="prob-ring-inner" style={{ opacity: hovered === i ? 1 : 0 }} />
+
+                  <div className={`prob-img-circle ${hovered === i ? "hov" : ""}`}>
+                    <img src={item.img} alt={item.title} />
+                  </div>
+
+                  <div
+                    className="prob-badge"
+                    style={{ background: item.badgeColor }}
+                  >
+                    {item.badge}
+                  </div>
+                </div>
+
+                <p className="prob-title">{item.title}</p>
+                <p className="prob-desc">{item.desc}</p>
+              </div>
+
+              {i < PROBLEMS.length - 1 && (
+                <svg className="prob-conn-svg" viewBox="0 0 60 2">
+                  <line
+                    x1="0"
+                    y1="1"
+                    x2="60"
+                    y2="1"
+                    stroke="#D97757"
+                    strokeWidth="2"
+                    strokeDasharray="5 4"
+                  />
+                </svg>
+              )}
+            </>
           ))}
+
         </div>
+
+        {/* BOTTOM */}
+        <div className="bottom-text">
+          <div className="bottom-main">
+            The brands winning in 2025 don’t fix problems one by one.
+          </div>
+
+          <div className="pill">
+            They build systems — and so do we.
+          </div>
+        </div>
+
       </section>
     </>
   );

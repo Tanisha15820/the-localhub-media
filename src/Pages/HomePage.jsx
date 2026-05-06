@@ -233,6 +233,7 @@ import PlanSection from "../components/PlanSection";
 import ProblemSection from "../components/ProblemSection";
 import ResultsSection from "../components/ResultsSection";
 import ServicesSection from "../components/ServicesSection";
+import StakesSection from "../components/StakesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import WhyWorkWithUs from "../components/Whyworkwithus";
 
@@ -550,8 +551,9 @@ export default function HomePage() {
         {/* <WhyWorkWithUs/> */}
         <PlanSection/>
         <ServicesSection />
+        <StakesSection/>
         <ContactCTA />
-        <BrandsSection />
+        {/* <BrandsSection /> */}
         <Footer />
       </div>
     </>

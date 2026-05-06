@@ -572,91 +572,44 @@
 //   );
 // }
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+
+import brandImg from "../assets/brand-development.png";
+import contentImg from "../assets/content.png";
+import performanceImg from "../assets/performance.png";
+import onlineImg from "../assets/online.png";
+import ecommerceImg from "../assets/ecommerce.png";
+import paidImg from "../assets/paid.png";
+import seoImg from "../assets/seo.png";
+import socialImg from "../assets/social.png";
+import aeoImg from "../assets/aeo.png";
+
+import metaBg from "../assets/meta.jpg";
+import googleBg from "../assets/google.jpg";
+import shopifyBg from "../assets/shopify.jpg";
+import openAIBg from "../assets/openAI.jpg";
+import hubspotBg from "../assets/hubspot.jpg";
+import canvaBg from "../assets/canva.jpg";
 
 const SERVICES = [
-  {
-    title: "Brand Development",
-    sub: "Identity & positioning",
-    color: "#F5A623",
-    textColor: "#fff",
-    size: "tall",
-    img: "../assets/branding.png",
-  },
-  {
-    title: "Content Marketing",
-    sub: "Authority at scale",
-    color: "#1AB394",
-    textColor: "#fff",
-    size: "short",
-    img: "../assets/content.png",
-  },
-  {
-    title: "Performance Marketing",
-    sub: "Paid that converts",
-    color: "#111111",
-    textColor: "#fff",
-    size: "tall",
-    img: "../assets/performance.png",
-  },
-  {
-    title: "Online Marketing",
-    sub: "Full-funnel strategy",
-    color: "#4A90D9",
-    textColor: "#fff",
-    size: "short",
-    img: "../assets/online.png",
-  },
-  {
-    title: "E-commerce Growth",
-    sub: "Shopify & WordPress",
-    color: "#4A6FE3",
-    textColor: "#fff",
-    size: "short",
-    img: "../assets/ecommerce.png",
-  },
-  {
-    title: "Paid Marketing",
-    sub: "Ads that convert",
-    color: "#E8605A",
-    textColor: "#fff",
-    size: "tall",
-    img: "../assets/paid.png",
-  },
-  {
-    title: "SEO",
-    sub: "Search dominance",
-    color: "#9B51E0",
-    textColor: "#fff",
-    size: "short",
-    img: "../assets/seo.png",
-  },
-  {
-    title: "Social Media Marketing",
-    sub: "Community & reach",
-    color: "#F5C842",
-    textColor: "#1A1A1A",
-    size: "short",
-    img: "../assets/social.png",
-  },
-  {
-    title: "AEO",
-    sub: "AI engine optimisation",
-    color: "#1AB394",
-    textColor: "#fff",
-    size: "short",
-    img: "../assets/aeo.png",
-  },
+  { title: "Brand Development", sub: "Identity & positioning", color: "#F5A623", textColor: "#fff", size: "tall", img: brandImg },
+  { title: "Content Marketing", sub: "Authority at scale", color: "#1AB394", textColor: "#fff", size: "short", img: contentImg },
+  { title: "Performance Marketing", sub: "Paid that converts", color: "#111111", textColor: "#fff", size: "tall", img: performanceImg },
+  { title: "Online Marketing", sub: "Full-funnel strategy", color: "#4A90D9", textColor: "#fff", size: "short", img: onlineImg },
+  { title: "E-commerce Growth", sub: "Shopify & WordPress", color: "#4A6FE3", textColor: "#fff", size: "short", img: ecommerceImg },
+  { title: "Paid Marketing", sub: "Ads that convert", color: "#E8605A", textColor: "#fff", size: "tall", img: paidImg },
+  { title: "SEO", sub: "Search dominance", color: "#9B51E0", textColor: "#fff", size: "short", img: seoImg },
+  { title: "Social Media Marketing", sub: "Community & reach", color: "#F5C842", textColor: "#fff", size: "short", img: socialImg },
+  { title: "AEO", sub: "AI engine optimisation", color: "#1AB394", textColor: "#fff", size: "short", img: aeoImg },
 ];
 
 const TOOLS = [
-  { name: "Meta Ads", icon: "../assets/tools/meta.png" },
-  { name: "Google Ads", icon: "../assets/tools/google.png" },
-  { name: "Shopify", icon: "../assets/tools/shopify.png" },
-  { name: "WordPress", icon: "../assets/tools/wordpress.png" },
-  { name: "OpenAI", icon: "../assets/tools/openai.png" },
-  { name: "HubSpot", icon: "../assets/tools/hubspot.png" },
-  { name: "Canva Pro", icon: "../assets/tools/canva.png" },
+  { name: "Meta Ads", sub: "Social campaigns", bgImg: metaBg },
+  { name: "Google Ads", sub: "Search & display", bgImg: googleBg },
+  { name: "Shopify", sub: "E-commerce", bgImg: shopifyBg },
+  { name: "OpenAI", sub: "AI automation", bgImg: openAIBg },
+  { name: "HubSpot", sub: "CRM & marketing", bgImg: hubspotBg },
+  { name: "Canva Pro", sub: "Design & creatives", bgImg: canvaBg },
 ];
 
 function ServiceCard({ s, delay }) {
@@ -667,135 +620,128 @@ function ServiceCard({ s, delay }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: s.color,
         borderRadius: "16px",
         overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-        padding: "0",
         position: "relative",
         gridRow: s.size === "tall" ? "span 2" : "span 1",
         cursor: "pointer",
         animation: `cardUp 0.6s cubic-bezier(0.22,1,0.36,1) both`,
         animationDelay: delay,
-        transform: hovered ? "translateY(-6px) scale(1.02)" : "translateY(0) scale(1)",
-        boxShadow: hovered
-          ? `0 20px 48px ${s.color}55`
-          : "0 2px 12px rgba(0,0,0,0.08)",
-        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease",
+        transform: hovered ? "translateY(-6px) scale(1.02)" : "translateY(0)",
+        boxShadow: hovered ? "0 20px 50px rgba(0,0,0,0.25)" : "0 2px 12px rgba(0,0,0,0.08)",
+        transition: "all 0.3s ease",
         minHeight: s.size === "tall" ? "320px" : "155px",
       }}
     >
-      {/* Image area — top 70% */}
-      <div
+      <img
+        src={s.img}
+        alt={s.title}
         style={{
-          position: "absolute",
-          inset: 0,
-          bottom: "56px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "20px 20px 0",
+          position: "absolute", inset: 0,
+          width: "100%", height: "100%",
+          objectFit: "cover",
+          transform: hovered ? "scale(1.08)" : "scale(1)",
+          transition: "transform 0.4s ease",
         }}
-      >
-        <img
-          src={s.img}
-          alt={s.title}
-          style={{
-            maxWidth: "80%",
-            maxHeight: s.size === "tall" ? "220px" : "90px",
-            objectFit: "contain",
-            transform: hovered ? "scale(1.08)" : "scale(1)",
-            transition: "transform 0.35s ease",
-            filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
-          }}
-        />
-      </div>
-
-      {/* Text strip — bottom */}
-      <div
-        style={{
-          background: "rgba(0,0,0,0.22)",
-          backdropFilter: "blur(2px)",
-          padding: "12px 18px 14px",
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
-        <div
-          style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 700,
-            fontSize: s.size === "tall" ? "1.05rem" : "0.88rem",
-            color: s.textColor,
-            lineHeight: 1.2,
-          }}
-        >
-          {s.title}
-        </div>
-        <div
-          style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 400,
-            fontSize: "0.72rem",
-            color: s.textColor === "#fff" ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.55)",
-            marginTop: "2px",
-          }}
-        >
-          {s.sub}
-        </div>
+      />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15))" }} />
+      <div style={{ position: "relative", zIndex: 2, padding: "16px 18px", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
+        <div style={{ fontWeight: 700, fontSize: s.size === "tall" ? "1.05rem" : "0.9rem", color: s.textColor }}>{s.title}</div>
+        <div style={{ fontSize: "0.75rem", marginTop: "2px", color: s.textColor === "#fff" ? "rgba(255,255,255,0.8)" : "rgba(0,0,0,0.6)" }}>{s.sub}</div>
       </div>
     </div>
   );
 }
 
-export default function Section5WhatWeDo() {
+function ToolCard({ tool }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        flex: "0 0 160px",
+        height: "110px",
+        borderRadius: "12px",
+        overflow: "hidden",
+        position: "relative",
+        cursor: "pointer",
+        border: "0.5px solid #eee",
+        transform: hovered ? "translateY(-4px)" : "none",
+        boxShadow: hovered ? "0 8px 24px rgba(0,0,0,0.18)" : "none",
+        transition: "transform 0.25s ease, box-shadow 0.25s ease",
+      }}
+    >
+      <img
+        src={tool.bgImg}
+        alt={tool.name}
+        style={{
+          position: "absolute", inset: 0,
+          width: "100%", height: "100%",
+          objectFit: "cover",
+          transform: hovered ? "scale(1.07)" : "scale(1)",
+          transition: "transform 0.35s ease",
+        }}
+      />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.68), rgba(0,0,0,0.12))" }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "10px 12px" }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{tool.name}</div>
+        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginTop: 2 }}>{tool.sub}</div>
+      </div>
+    </div>
+  );
+}
+
+function ToolsMarquee() {
+  const [paused, setPaused] = useState(false);
+  // Duplicate for seamless loop
+  const items = [...TOOLS, ...TOOLS];
+
+  return (
+    <div
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      style={{
+        overflow: "hidden",
+        width: "100%",
+        cursor: "pointer",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          gap: "16px",
+          width: "max-content",
+          animation: "marqueeScroll 18s linear infinite",
+          animationPlayState: paused ? "paused" : "running",
+        }}
+      >
+        {items.map((t, i) => (
+          <ToolCard key={`${t.name}-${i}`} tool={t} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function ServicesSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
         @keyframes cardUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(16px); }
-          to   { opacity: 1; transform: translateY(0); }
+        @keyframes marqueeScroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
 
-        .s5-tool-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: #fff;
-          border: 1px solid rgba(0,0,0,0.08);
-          border-radius: 999px;
-          padding: 8px 18px 8px 10px;
-          font-family: 'Poppins', sans-serif;
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: #1A1A1A;
-          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-          cursor: default;
-        }
-
-        .s5-tool-pill:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 24px rgba(217,119,87,0.18);
-          border-color: #D97757;
-        }
-
-        .s5-tool-pill img {
-          width: 26px;
-          height: 26px;
-          object-fit: contain;
-          border-radius: 6px;
-        }
-
-        .s5-grid {
+        .services-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           grid-auto-rows: 160px;
@@ -805,142 +751,46 @@ export default function Section5WhatWeDo() {
         }
 
         @media (max-width: 900px) {
-          .s5-grid {
+          .services-grid {
             grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: 140px;
-          }
-        }
-
-        @media (max-width: 540px) {
-          .s5-grid {
-            grid-template-columns: 1fr 1fr;
-            grid-auto-rows: 130px;
           }
         }
       `}</style>
 
-      <section
-        style={{
-          background: "#F5F0E8",
-          padding: "88px 40px",
-          fontFamily: "'Poppins', sans-serif",
-        }}
-      >
-        {/* ── Heading (matches other sections) ── */}
+      <section style={{ background: "#F5F0E8", padding: "80px 20px" }}>
+
+        {/* Heading */}
         <div style={{ textAlign: "center", marginBottom: "60px" }}>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              background: "rgba(217,119,87,0.1)",
-              border: "1px solid rgba(217,119,87,0.2)",
-              borderRadius: "999px",
-              padding: "6px 14px",
-              marginBottom: "20px",
-            }}
-          >
-            <span
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#D97757",
-              }}
-            />
-            <span
-              style={{
-                fontSize: "11px",
-                fontWeight: 600,
-                letterSpacing: "0.12em",
-                color: "#D97757",
-                textTransform: "uppercase",
-              }}
-            >
-              Section 5 — What we do
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2 mb-6">
+            <span className="w-2 h-2 rounded-full bg-primary" />
+            <span className="text-[11px] font-semibold tracking-widest text-primary uppercase">
+              What we do
             </span>
           </div>
-
-          <h2
-            style={{
-              fontSize: "clamp(2rem, 4vw, 2.8rem)",
-              fontWeight: 800,
-              color: "#1A1A1A",
-              lineHeight: 1.2,
-              letterSpacing: "-0.02em",
-              marginBottom: "16px",
-            }}
-          >
-            Every lever your D2C brand <br />
+          <h2 style={{ fontSize: "2.5rem", fontWeight: 800 }}>
+            Every lever your brand <br />
             <span style={{ color: "#D97757" }}>needs to grow.</span>
           </h2>
-
-          <p
-            style={{
-              fontSize: "1rem",
-              color: "#6B6B6B",
-              maxWidth: "480px",
-              margin: "0 auto",
-              lineHeight: 1.7,
-            }}
-          >
-            No referrals. No hand-offs.{" "}
-            <span style={{ color: "#1A1A1A", fontWeight: 600 }}>
-              One team that owns the full picture.
-            </span>
-          </p>
+          <p style={{ color:"#8C8C8C", fontSize:"1rem", maxWidth:460, margin:"0 auto", lineHeight:1.75 }}>
+           No referrals. No hand-offs. One team that owns the full picture
+            </p>
         </div>
 
-        {/* ── Service Cards Grid ── */}
-        <div className="s5-grid" style={{ marginBottom: "64px" }}>
+        {/* Services Grid */}
+        <div className="services-grid">
           {SERVICES.map((s, i) => (
-            <ServiceCard
-              key={s.title}
-              s={s}
-              delay={`${i * 0.08}s`}
-            />
+            <ServiceCard key={s.title} s={s} delay={`${i * 0.08}s`} />
           ))}
         </div>
 
-        {/* ── Tools Strip ── */}
-        <div
-          style={{
-            maxWidth: "1040px",
-            margin: "0 auto",
-            animation: "fadeUp 0.7s ease both",
-            animationDelay: "0.5s",
-          }}
-        >
-          <p
-            style={{
-              textAlign: "center",
-              fontSize: "0.72rem",
-              fontWeight: 600,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: "#9E9E9E",
-              marginBottom: "20px",
-            }}
-          >
+        {/* Tools Marquee */}
+        <div style={{ marginTop: "60px", textAlign: "center" }}>
+          <p style={{ marginBottom: "20px", color: "#777", fontSize: "18px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
             Tools we use
           </p>
-
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              gap: "12px",
-            }}
-          >
-            {TOOLS.map((t) => (
-              <div key={t.name} className="s5-tool-pill">
-                <img src={t.icon} alt={t.name} />
-                {t.name}
-              </div>
-            ))}
-          </div>
+          <ToolsMarquee />
         </div>
+
       </section>
     </>
   );

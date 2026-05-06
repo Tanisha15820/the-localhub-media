@@ -1,68 +1,92 @@
-export default function ContactCTA() {
+export default function CTASection() {
   return (
-    <section className="w-full bg-[#161412] text-white py-20 px-6 md:px-12 font-main">
+    <section className="py-16 md:py-20 px-6 md:px-16 font-main" style={{ background: "#EBD2C1" }}>
 
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto text-center">
 
-        {/* HEADING */}
-        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-          Ready to Improve Your{" "}
-          <span className="text-[#D97757]">Digital Performance?</span>
-        </h2>
+        {/* Top Label */}
+        <div style={{ marginBottom: 18 }}>
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            background: "rgba(217,119,87,0.12)",
+            border: "1px solid rgba(217,119,87,0.25)",
+            borderRadius: 999,
+            padding: "5px 16px",
+            marginBottom: 14
+          }}>
+            <span style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "#D97757"
+            }} />
+            <span style={{
+              fontSize: 11,
+              fontWeight: 700,
+              color: "#D97757",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase"
+            }}>
+              Call to action
+            </span>
+          </div>
 
-        <p className="text-white/60 mt-4 text-sm md:text-base">
-          Get a free consultation and learn how we optimise every channel for growth
-        </p>
+          {/* Heading */}
+          <h2 style={{
+            fontSize: "clamp(1.8rem,4vw,3rem)",
+            fontWeight: 800,
+            color: "#1A1A1A",
+            lineHeight: 1.15,
+            margin: "0 0 10px"
+          }}>
+            Ready to build something that{" "}
+            <span style={{ color: "#D97757" }}>
+              compounds?
+            </span>
+          </h2>
 
-        {/* FORM */}
-        <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center">
-
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="bg-transparent border border-white/10 rounded-lg px-5 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#D97757] transition w-full md:w-auto"
-          />
-
-          <input
-            type="email"
-            placeholder="Email Address"
-            className="bg-transparent border border-white/10 rounded-lg px-5 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#D97757] transition w-full md:w-auto"
-          />
-
-          <input
-            type="text"
-            placeholder="Phone Number"
-            className="bg-transparent border border-white/10 rounded-lg px-5 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#D97757] transition w-full md:w-auto"
-          />
-
-          <input
-            type="text"
-            placeholder="Website (Optional)"
-            className="bg-transparent border border-white/10 rounded-lg px-5 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#D97757] transition w-full md:w-auto"
-          />
-
-          {/* BUTTON */}
-          <button className="bg-[#D97757] text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#c86545] transition whitespace-nowrap">
-            SUBMIT
-          </button>
+          {/* Subtext */}
+          <p style={{
+            color: "#6F6F6F",
+            fontSize: "0.95rem",
+            maxWidth: 480,
+            margin: "0 auto",
+            lineHeight: 1.6
+          }}>
+            Book a free strategy call. We'll audit your digital presence and
+            show you exactly where the growth is.
+          </p>
         </div>
 
-        {/* STATS */}
-        <div className="mt-10 flex flex-wrap justify-center gap-8 text-sm text-white/70">
+        {/* CTA Button */}
+        <div className="mt-8">
+          <button className="bg-primary text-white px-7 py-3 rounded-full text-sm font-semibold shadow-md hover:shadow-lg hover:scale-[1.05] transition-all duration-300">
+            Book your free strategy call
+          </button>
 
+          <p className="text-textSecondary text-sm mt-3">
+            No pitch. No pressure. Just clarity on what's next.
+          </p>
+        </div>
+
+        {/* Benefits */}
+        <div className="mt-10 flex flex-col md:flex-row items-center justify-center gap-5 text-xs md:text-sm text-[#5f5f5f]">
+          
           <div className="flex items-center gap-2">
-            <span className="text-[#D97757]">★</span>
-            <span>16000+ Happy Clients</span>
+            <span className="w-2 h-2 rounded-full bg-primary"></span>
+            <span>No long-term lock-ins</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-[#D97757]">🏆</span>
-            <span>Award Winning Agency</span>
+            <span className="w-2 h-2 rounded-full bg-primary"></span>
+            <span>Response within 24 hrs</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-[#D97757]">🚀</span>
-            <span>7+ Years Experience</span>
+            <span className="w-2 h-2 rounded-full bg-primary"></span>
+            <span>ROI-first approach</span>
           </div>
 
         </div>

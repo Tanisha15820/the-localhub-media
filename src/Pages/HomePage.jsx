@@ -229,9 +229,11 @@ import BrandsSection from "../components/BrandsSection";
 import ContactCTA from "../components/ContactCTA";
 import Footer from "../components/Footer";
 import GuideSection from "../components/GuideSection";
+import PlanSection from "../components/PlanSection";
 import ProblemSection from "../components/ProblemSection";
 import ResultsSection from "../components/ResultsSection";
 import ServicesSection from "../components/ServicesSection";
+import TestimonialsSection from "../components/TestimonialsSection";
 import WhyWorkWithUs from "../components/Whyworkwithus";
 
 const featureItems = [
@@ -544,6 +546,9 @@ export default function HomePage() {
         <ProblemSection />
         <GuideSection />
         <ResultsSection />
+        <TestimonialsSection/>
+        {/* <WhyWorkWithUs/> */}
+        <PlanSection/>
         <ServicesSection />
         <ContactCTA />
         <BrandsSection />

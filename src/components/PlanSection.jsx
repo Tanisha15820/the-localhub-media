@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 
+// SVG icons for all 3 steps — no image imports needed
 const AuditIcon = () => (
   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 11l3 3L22 4"/>
@@ -87,7 +88,10 @@ function AnimatedEl({ delay, children, className = "" }) {
   const ref = useRef(null);
   useScrollReveal(ref, delay);
   return (
-    <div ref={ref} className={`opacity-0 translate-y-6 transition-all duration-700 ease-out ${className}`}>
+    <div
+      ref={ref}
+      className={`opacity-0 translate-y-6 transition-all duration-700 ease-out ${className}`}
+    >
       {children}
     </div>
   );
@@ -123,6 +127,7 @@ function Step({ step, index, isLast }) {
       className="group grid opacity-0 translate-y-6 transition-all duration-700 ease-out"
       style={{ gridTemplateColumns: "96px minmax(0,1fr)", gap: "0 2.5rem" }}
     >
+      {/* Circle icon column */}
       <div className="flex flex-col items-center pt-1 relative">
         <div
           className={`
@@ -152,6 +157,7 @@ function Step({ step, index, isLast }) {
         )}
       </div>
 
+      {/* Body */}
       <div className="pb-16">
         <span
           className={`
@@ -177,7 +183,7 @@ function Step({ step, index, isLast }) {
             <span
               key={pill}
               className={`
-                text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1 bg-white
+                text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1 bg-gray-50
                 transition-all duration-200 cursor-default hover:-translate-y-0.5
                 ${step.colors.pillHover}
               `}
@@ -193,77 +199,30 @@ function Step({ step, index, isLast }) {
 
 export default function PlanSection() {
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+    <section className="py-24 px-6 bg-white">
+      <div className="max-w-3xl mx-auto">
 
-        .plan-section {
-          background: #F5F0E8;
-          padding: 100px 24px 110px;
-          font-family: 'Poppins', sans-serif;
-          overflow: hidden;
-          position: relative;
-        }
-        .plan-header {
-          text-align: center;
-          margin-bottom: 80px;
-        }
-        .plan-eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: rgba(217,119,87,0.10);
-          border: 1px solid rgba(217,119,87,0.25);
-          border-radius: 999px;
-          padding: 6px 18px;
-          margin-bottom: 24px;
-        }
-        .plan-eyebrow-dot {
-          width: 7px; height: 7px;
-          border-radius: 50%;
-          background: #D97757;
-        }
-        .plan-eyebrow-text {
-          font-size: 11px;
-          font-weight: 700;
-          color: #D97757;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-        }
-        .plan-main-heading {
-          font-size: clamp(2rem, 4.5vw, 3.4rem);
-          font-weight: 800;
-          color: #1A1A1A;
-          line-height: 1.1;
-          margin: 0 0 18px;
-        }
-        .plan-highlight { color: #D97757; }
-        .plan-subtext {
-          color: #8C8C8C;
-          max-width: 520px;
-          margin: 0 auto;
-          line-height: 1.7;
-          font-size: 1rem;
-        }
-      `}</style>
+        {/* Header */}
+        <div className="mb-16 text-center">
 
-      <section className="plan-section">
-        <div className="plan-header">
-          <div className="plan-eyebrow">
-            <div className="plan-eyebrow-dot" />
-            <span className="plan-eyebrow-text">The Plan</span>
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2 mb-6">
+            <span className="w-2 h-2 rounded-full bg-primary" />
+            <span className="text-[11px] font-semibold tracking-widest text-primary uppercase">
+              The plan
+            </span>
           </div>
-          <h2 className="plan-main-heading">
+
+          <h2 className="text-3xl md:text-5xl font-extrabold text-textPrimary leading-tight">
             A complete growth system —<br />
-            <span className="plan-highlight">built in three moves.</span>
+            <span className="text-primary">
+              built in three moves.
+            </span>
           </h2>
-          <p className="plan-subtext">
-            Not three random services.{" "}
-            <b style={{ color: "#1A1A1A" }}>One connected system that compounds.</b>
-          </p>
+
         </div>
 
-        <div style={{ maxWidth: "720px", margin: "0 auto" }}>
+        {/* Steps */}
+        <div className="relative">
           {steps.map((step, i) => (
             <Step
               key={step.tag}
@@ -273,7 +232,8 @@ export default function PlanSection() {
             />
           ))}
         </div>
-      </section>
-    </>
+
+      </div>
+    </section>
   );
 }

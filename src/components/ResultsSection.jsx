@@ -1,7 +1,6 @@
-// // ═══════════════════════════════════════════
-// // VERSION A — White "Awards & Recognition"
-// // card below Rahul Sharma quote
-// // ═══════════════════════════════════════════
+
+// import teamImg from "../assets/team.jpg";
+
 // export default function ResultsSection() {
 //   const stats = [
 //     { num: "3.8", suffix: "×",   label: "Average ROAS across\npaid media campaigns", fill: 76 },
@@ -13,12 +12,6 @@
 //     { dot: "#D97757", name: "D2C Fashion Brand", category: "AI Marketing + Ads",        result: "4.2× ROAS"     },
 //     { dot: "#1A1A1A", name: "SaaS Startup",       category: "Brand Identity + SEO",      result: "+340% Traffic" },
 //     { dot: "#D97757", name: "Local F&B Chain",    category: "Social + Content Strategy", result: "2.9× Revenue"  },
-//   ];
-
-//   const awards = [
-//     { num: "#1",   label: "Digital Agency\nNorth India 2024"        },
-//     { num: "4.9★", label: "Average client\nrating (120+ reviews)"   },
-//     { num: "G10",  label: "Google Partner\nPremier Badge"           },
 //   ];
 
 //   const steps = [
@@ -107,22 +100,23 @@
 //                 </div>
 //               </div>
 
-//               {/* ── WHITE AWARDS CARD (Version A) ── */}
-//               <div style={{ margin:"0 16px 18px", background:"#EDE8D9", borderRadius:16, padding:"24px 22px" }}>
-//                 <div style={{ fontSize:10, fontWeight:700, color:"#D97757", letterSpacing:"0.13em", textTransform:"uppercase", marginBottom:8 }}>✦ Awards & Recognition</div>
-//                 <h4 style={{ fontSize:"1.05rem", fontWeight:800, color:"#1A1A1A", marginBottom:8, lineHeight:1.2 }}>
-//                   Recognised by the<br/>industry's best.
-//                 </h4>
-//                 <p style={{ fontSize:"0.77rem", color:"#8C8C8C", lineHeight:1.65, marginBottom:16 }}>
-//                   Top-ranked across performance, creativity and client satisfaction — three years running.
-//                 </p>
-//                 <div style={{ display:"flex", gap:8 }}>
-//                   {awards.map((a,i) => (
-//                     <div key={i} style={{ flex:1, background:"#fff", borderRadius:10, padding:"12px 10px", border:"1px solid rgba(26,26,26,0.07)" }}>
-//                       <div style={{ fontSize:"1.25rem", fontWeight:800, color:"#D97757", lineHeight:1 }}>{a.num}</div>
-//                       <div style={{ fontSize:"0.68rem", color:"#8C8C8C", marginTop:4, lineHeight:1.4, whiteSpace:"pre-line" }}>{a.label}</div>
-//                     </div>
-//                   ))}
+//               {/* ── CINEMATIC IMAGE (Version B) ── */}
+//               <div style={{ position:"relative", flex:1, minHeight:180, overflow:"hidden" }}>
+//                 <img
+//                   src={teamImg} 
+//                   alt="Team at work"
+//                   style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", display:"block", minHeight:180 }}
+//                 />
+//                 {/* dark overlay top — blends with dark card above */}
+//                 <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(22,20,18,0.72) 0%, rgba(22,20,18,0.1) 40%, rgba(22,20,18,0.55) 100%)", pointerEvents:"none" }}/>
+//                 {/* badge */}
+//                 <div style={{ position:"absolute", top:14, right:16, background:"rgba(217,119,87,0.88)", backdropFilter:"blur(8px)", borderRadius:8, padding:"5px 12px", fontSize:9.5, fontWeight:700, color:"#fff", letterSpacing:"0.08em", textTransform:"uppercase" }}>
+//                   Our Team
+//                 </div>
+//                 {/* bottom caption */}
+//                 <div style={{ position:"absolute", bottom:18, left:22 }}>
+//                   <div style={{ fontSize:"0.88rem", fontWeight:700, color:"#fff", marginBottom:3 }}>Strategy. Execution. Results.</div>
+//                   <div style={{ fontSize:"0.72rem", color:"rgba(255,255,255,0.5)" }}>A team of 30+ specialists in your corner</div>
 //                 </div>
 //               </div>
 
@@ -210,10 +204,6 @@
 //   );
 // }
 
-// ═══════════════════════════════════════════
-// VERSION B — Cinematic team image
-// below Rahul Sharma quote
-// ═══════════════════════════════════════════
 import teamImg from "../assets/team.jpg";
 
 export default function ResultsSection() {
@@ -255,6 +245,72 @@ export default function ResultsSection() {
         .rs-case-row:hover { background:#f7f4ef; }
         .rs-metric-card { background:#161412;border-radius:16px;padding:26px 22px;transition:transform 0.25s; }
         .rs-metric-card:hover { transform:translateY(-3px); }
+
+        /* Top two-column grid */
+        .rs-top-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        /* Stats row inside dark panel */
+        .rs-stats-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* Bottom metrics grid */
+        .rs-metrics-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 12px;
+          margin-top: 12px;
+        }
+
+        /* CTA row */
+        .rs-cta-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 14px;
+          margin-top: 44px;
+          flex-wrap: wrap;
+        }
+
+        /* ── TABLET (≤900px) ── */
+        @media (max-width: 900px) {
+          .rs-top-grid {
+            grid-template-columns: 1fr;
+          }
+          .rs-metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* ── MOBILE (≤600px) ── */
+        @media (max-width: 600px) {
+          .rs-stats-row {
+            grid-template-columns: 1fr;
+          }
+          .rs-stats-row > div {
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+          }
+          .rs-stats-row > div:last-child {
+            border-bottom: none;
+          }
+          .rs-metrics-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+          .rs-cta-row {
+            flex-direction: column;
+          }
+          .rs-cta-row a {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+          }
+        }
       `}</style>
 
       <section className="rs" style={{ width:"100%", background:"#F5F0E8", padding:"88px 20px 80px", boxSizing:"border-box" }}>
@@ -276,13 +332,13 @@ export default function ResultsSection() {
           </div>
 
           {/* TOP GRID */}
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+          <div className="rs-top-grid">
 
             {/* LEFT — dark panel */}
             <div style={{ background:"#161412", borderRadius:20, overflow:"hidden", display:"flex", flexDirection:"column" }}>
 
               {/* Stats */}
-              <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)" }}>
+              <div className="rs-stats-row">
                 {stats.map((s,i) => (
                   <div key={i} style={{ padding:"34px 22px", borderRight: i<2 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
                     <div style={{ fontSize:"2.6rem", fontWeight:800, color:"#fff", letterSpacing:"-0.04em", lineHeight:1 }}>
@@ -315,20 +371,17 @@ export default function ResultsSection() {
                 </div>
               </div>
 
-              {/* ── CINEMATIC IMAGE (Version B) ── */}
+              {/* Team image */}
               <div style={{ position:"relative", flex:1, minHeight:180, overflow:"hidden" }}>
                 <img
-                  src={teamImg} 
+                  src={teamImg}
                   alt="Team at work"
                   style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center", display:"block", minHeight:180 }}
                 />
-                {/* dark overlay top — blends with dark card above */}
                 <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(22,20,18,0.72) 0%, rgba(22,20,18,0.1) 40%, rgba(22,20,18,0.55) 100%)", pointerEvents:"none" }}/>
-                {/* badge */}
                 <div style={{ position:"absolute", top:14, right:16, background:"rgba(217,119,87,0.88)", backdropFilter:"blur(8px)", borderRadius:8, padding:"5px 12px", fontSize:9.5, fontWeight:700, color:"#fff", letterSpacing:"0.08em", textTransform:"uppercase" }}>
                   Our Team
                 </div>
-                {/* bottom caption */}
                 <div style={{ position:"absolute", bottom:18, left:22 }}>
                   <div style={{ fontSize:"0.88rem", fontWeight:700, color:"#fff", marginBottom:3 }}>Strategy. Execution. Results.</div>
                   <div style={{ fontSize:"0.72rem", color:"rgba(255,255,255,0.5)" }}>A team of 30+ specialists in your corner</div>
@@ -391,7 +444,7 @@ export default function ResultsSection() {
           </div>
 
           {/* BOTTOM 4 METRICS */}
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12, marginTop:12 }}>
+          <div className="rs-metrics-grid">
             {metrics.map((m,i) => (
               <div key={i} className="rs-metric-card">
                 <div style={{ fontSize:18, marginBottom:14, color:"#D97757" }}>{m.icon}</div>
@@ -408,7 +461,7 @@ export default function ResultsSection() {
           </div>
 
           {/* CTA */}
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:14, marginTop:44, flexWrap:"wrap" }}>
+          <div className="rs-cta-row">
             <a href="#" className="rs-cta-primary">See all case studies →</a>
             <a href="#" className="rs-cta-secondary">Book a free strategy call</a>
           </div>

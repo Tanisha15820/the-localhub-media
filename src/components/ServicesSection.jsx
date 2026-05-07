@@ -573,7 +573,7 @@
 // }
 
 import { useState, useRef } from "react";
-
+import SectionHeader from "./SectionHeader";
 import brandImg from "../assets/brand-development.png";
 import contentImg from "../assets/content.png";
 import performanceImg from "../assets/performance.png";
@@ -762,21 +762,12 @@ export default function ServicesSection() {
       <section style={{ background: "#F5F0E8", padding: "80px 20px" }}>
 
         {/* Heading */}
-        <div style={{ textAlign: "center", marginBottom: "60px" }}>
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2 mb-6">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            <span className="text-[11px] font-semibold tracking-widest text-primary uppercase">
-              What we do
-            </span>
-          </div>
-          <h2 style={{ fontSize: "2.5rem", fontWeight: 800 }}>
-            Every lever your brand <br />
-            <span style={{ color: "#D97757" }}>needs to grow.</span>
-          </h2>
-          <p style={{ color:"#8C8C8C", fontSize:"1rem", maxWidth:460, margin:"0 auto", lineHeight:1.75 }}>
-           No referrals. No hand-offs. One team that owns the full picture
-            </p>
-        </div>
+        <SectionHeader
+  tag="What we do"
+  title="Every lever your brand"
+  highlight="needs to grow."
+  subtitle="No referrals. No hand-offs. One team that owns the full picture."
+/>
 
         {/* Services Grid */}
         <div className="services-grid">

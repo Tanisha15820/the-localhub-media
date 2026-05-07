@@ -1,65 +1,17 @@
 import stakesImg from "../assets/stakes.png";
+import SectionHeader from "./SectionHeader";
 
 export default function StakesSection() {
   return (
     <section className="bg-bgMain py-20 md:py-24 px-6 md:px-16 font-main">
 
       {/* TOP CENTER HEADING */}
-      <div className="max-w-4xl mx-auto text-center mb-10 md:mb-12">
-        
-        <div style={{ marginBottom: 20 }}>
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            background: "rgba(217,119,87,0.10)",
-            border: "1px solid rgba(217,119,87,0.25)",
-            borderRadius: 999,
-            padding: "6px 18px",
-            marginBottom: 16
-          }}>
-            <span style={{
-              width: 6,
-              height: 6,
-              borderRadius: "50%",
-              background: "#D97757"
-            }} />
-            <span style={{
-              fontSize: 11,
-              fontWeight: 700,
-              color: "#D97757",
-              letterSpacing: "0.14em",
-              textTransform: "uppercase"
-            }}>
-              Stakes
-            </span>
-          </div>
-
-          <h2 style={{
-            fontSize: "clamp(2rem,4vw,3.2rem)",
-            fontWeight: 800,
-            color: "#1A1A1A",
-            lineHeight: 1.1,
-            letterSpacing: "0.02em",
-            margin: "0 0 12px"
-          }}>
-            This isn't just growth. <br />
-            <span style={{ color: "#D97757" }}>
-              It's survival.
-            </span>
-          </h2>
-
-          <p style={{
-            color: "#8C8C8C",
-            fontSize: "1rem",
-            maxWidth: 520,
-            margin: "0 auto",
-            lineHeight: 1.7
-          }}>
-            The brands building systems today are the ones dominating tomorrow.
-          </p>
-        </div>
-      </div>
+      <SectionHeader
+  tag="Stakes"
+  title="This isn't just growth."
+  highlight="It's survival."
+  subtitle="The brands building systems today are the ones dominating tomorrow."
+/>
 
 
       {/* BOTTOM GRID (CONTENT + IMAGE) */}

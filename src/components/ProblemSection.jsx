@@ -3,6 +3,7 @@ import adsImg from "../assets/ads.png";
 import contentImg from "../assets/content.png";
 import websiteImg from "../assets/website.png";
 import brandImg from "../assets/brand.png";
+import SectionHeader from "./SectionHeader";
 
 function useInView(threshold = 0.1) {
   const ref = useRef(null);
@@ -264,22 +265,12 @@ export default function ProblemSection() {
       <section className="prob-section" ref={sectionRef}>
 
         {/* HEADER */}
-        <div className="prob-header">
-          <div className="eyebrow">
-            <div className="eyebrow-dot" />
-            <span className="eyebrow-text">The Problem</span>
-          </div>
-
-          <h2 className="main-heading">
-            Most D2C brands are <span className="highlight">losing money</span>
-            <br />on their digital presence.
-          </h2>
-
-          <p className="subtext">
-            Not because they're not working hard enough.{" "}
-            <b style={{ color: "#1A1A1A" }}>Because they're working in silos.</b>
-          </p>
-        </div>
+        <SectionHeader
+  tag="The Problem"
+  title="Most D2C brands are"
+  highlight="losing money on their digital presence."
+  subtitle="Not because they're not working hard enough. Because they're working in silos."
+/>
 
         {/* FLOW */}
         <div className="prob-row">

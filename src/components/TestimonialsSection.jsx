@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SectionHeader from "./SectionHeader";
 
 const TESTIMONIALS = [
   {
@@ -240,38 +241,12 @@ export default function TestimonialsSection() {
 
       <section className="tc-wrap">
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "60px", fontFamily: "'Poppins', sans-serif" }}>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              background: "rgba(217,119,87,0.1)",
-              border: "1px solid rgba(217,119,87,0.2)",
-              borderRadius: "999px",
-              padding: "6px 14px",
-              marginBottom: "20px",
-            }}
-          >
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#D97757" }} />
-            <span style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", color: "#D97757", textTransform: "uppercase" }}>
-              Client Results
-            </span>
-          </div>
-
-          <h2
-            style={{
-              fontSize: "clamp(2rem, 4vw, 2.8rem)",
-              fontWeight: 800,
-              color: "#1A1A1A",
-              lineHeight: 1.2,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            What our clients <br />
-            <span style={{ color: "#D97757" }}>actually say.</span>
-          </h2>
-        </div>
+       <SectionHeader
+  tag="Client Results"
+  title="What our clients"
+  highlight="actually say."
+  subtitle=""
+/>
 
         {/* Cards */}
         <div className="tc-grid">

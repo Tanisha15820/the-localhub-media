@@ -512,6 +512,7 @@
 // }
 
 import teamImg from "../assets/team.jpg";
+import SectionHeader from "./SectionHeader";
 
 export default function ResultsSection() {
   const stats = [
@@ -704,66 +705,12 @@ export default function ResultsSection() {
         <div style={{ maxWidth: 1260, margin: "0 auto" }}>
           
           {/* HEADER */}
-          <div style={{ textAlign: "center", marginBottom: 52 }}>
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "rgba(217,119,87,0.10)",
-                border: "1px solid rgba(217,119,87,0.25)",
-                borderRadius: 999,
-                padding: "6px 18px",
-                marginBottom: 18,
-              }}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: "#D97757",
-                }}
-              />
-              <span
-                style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#D97757",
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                }}
-              >
-                Results
-              </span>
-            </div>
-
-            <h2
-              style={{
-                fontSize: "clamp(2rem,4vw,3.2rem)",
-                fontWeight: 800,
-                color: "#1A1A1A",
-                lineHeight: 1.1,
-                margin: "0 0 14px",
-              }}
-            >
-              Numbers that don't need <br />
-              <span style={{ color: "#D97757" }}>explanation.</span>
-            </h2>
-
-            <p
-              style={{
-                color: "#8C8C8C",
-                fontSize: "1rem",
-                maxWidth: 460,
-                margin: "0 auto",
-                lineHeight: 1.75,
-              }}
-            >
-              Real outcomes from real brands — across AI marketing,
-              branding, and performance growth.
-            </p>
-          </div>
+          <SectionHeader
+  tag="Results"
+  title="Numbers that don't need"
+  highlight="explanation."
+  subtitle="Real outcomes from real brands — across AI marketing, branding, and performance growth."
+/>
 
           {/* TOP GRID */}
           <div className="rs-top-grid">

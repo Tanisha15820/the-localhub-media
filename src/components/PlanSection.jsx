@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import SectionHeader from "./SectionHeader";
 
 // SVG icons
 const AuditIcon = () => (
@@ -262,7 +263,7 @@ export default function PlanSection() {
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}
-        <div className="mb-20 text-center">
+        {/* <div className="mb-20 text-center">
           <div className="inline-flex items-center gap-2 bg-[#D97757]/10 border border-[#D97757]/20 rounded-full px-5 py-2 mb-6">
             <span className="w-2 h-2 rounded-full bg-[#D97757]" />
 
@@ -278,7 +279,12 @@ export default function PlanSection() {
               built in three moves.
             </span>
           </h2>
-        </div>
+        </div> */}
+        <SectionHeader
+  tag="The plan"
+  title="A complete growth system"
+  highlight="built in three moves."
+/>
 
         {/* Steps */}
         <div className="relative">

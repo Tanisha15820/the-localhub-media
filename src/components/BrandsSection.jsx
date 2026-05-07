@@ -356,8 +356,7 @@ import leitzImg from "../assets/leitz.jpg";
 import ghouseImg from "../assets/ghouse.png";
 import googleImg from "../assets/google.jpg";
 import lambtonImg from "../assets/lambton.png";
-
-
+import SectionHeader from "./SectionHeader";
 
 const CARDS = [
   {
@@ -616,7 +615,7 @@ export default function BrandsSection() {
       `}</style>
 
       <section className="bs-section">
-        <div className="bs-header">
+        {/* <div className="bs-header">
           <div className="bs-pill">
             <span className="bs-pill-dot" />
             <span className="bs-pill-text">Brands</span>
@@ -631,7 +630,14 @@ export default function BrandsSection() {
             As a leading digital marketing company in India, ThelocalHub Media
             works with global brands to deliver consistent, growth-focused results.
           </p>
-        </div>
+        </div> */}
+        <SectionHeader
+  tag="Brands"
+  title="Trusted by Global"
+  highlight="Brands."
+  subtitle=" As a leading digital marketing company in India, ThelocalHub Media
+            works with global brands to deliver consistent, growth-focused results."
+/>
 
         <div className="bs-track-outer">
           <div

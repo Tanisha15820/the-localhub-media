@@ -6,6 +6,7 @@ import {
   Rocket,
   ShoppingCart,
 } from "lucide-react";
+import SectionHeader from "./SectionHeader";
 
 const guideData = [
   {
@@ -46,25 +47,12 @@ export default function GuideSection() {
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
-
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2 mb-6">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            <span className="text-[11px] font-semibold tracking-widest text-primary uppercase">
-              The Guide
-            </span>
-          </div>
-
-          {/* Heading */}
-          <h2 className="text-3xl md:text-5xl font-extrabold text-textPrimary leading-tight">
-            We've helped D2C brands go from <br />
-            <span className="text-primary">
-              invisible to inevitable.
-            </span>
-          </h2>
-
-        </div>
+       <SectionHeader
+  tag="The Guide"
+  title="We've helped D2C brands go from"
+  highlight="invisible to inevitable."
+  subtitle=""
+/>
 
         {/* Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">

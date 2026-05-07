@@ -470,18 +470,51 @@ export default function HomePage() {
 
               {/* Headline */}
               <div className="hero-animate" style={{ animationDelay: "0.15s" }}>
-                <h1 style={{ fontSize: "clamp(2.4rem, 5vw, 4rem)", fontWeight: 900, color: "#1A1A1A", lineHeight: 1.08, letterSpacing: "-0.035em", margin: "0 0 22px" }}>
-                  Your brand deserves
-                  <br />
-                  more than{" "}
-                  <span style={{ color: "#D97757", position: "relative", display: "inline-block" }}>
-                    a good-looking
-                    <svg viewBox="0 0 300 10" style={{ position: "absolute", bottom: -4, left: 0, width: "100%", height: 8 }} preserveAspectRatio="none">
-                      <path d="M0,7 Q37,1 75,7 Q112,13 150,7 Q187,1 225,7 Q262,13 300,7" stroke="#D97757" strokeWidth="2.5" fill="none" strokeLinecap="round" opacity="0.5" />
-                    </svg>
-                  </span>{" "}website.
-                </h1>
-              </div>
+  <h1
+    style={{
+      fontSize: "clamp(2.4rem, 5vw, 4rem)",
+      fontWeight: 700,
+      color: "#1A1A1A",
+      lineHeight: 1.08,
+      letterSpacing: "-0.035em",
+      margin: "0 0 22px",
+    }}
+  >
+    Your brand deserves
+    <br />
+    more than{" "}
+    <span
+      style={{
+        color: "#D97757",
+        position: "relative",
+        display: "inline-block",
+      }}
+    >
+      a good-looking
+      <svg
+        viewBox="0 0 300 10"
+        style={{
+          position: "absolute",
+          bottom: -4,
+          left: 0,
+          width: "100%",
+          height: 8,
+        }}
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,7 Q37,1 75,7 Q112,13 150,7 Q187,1 225,7 Q262,13 300,7"
+          stroke="#D97757"
+          strokeWidth="2.5"
+          fill="none"
+          strokeLinecap="round"
+          opacity="0.5"
+        />
+      </svg>
+    </span>{" "}
+    website.
+  </h1>
+</div>
 
               {/* Sub */}
               <div className="hero-animate" style={{ animationDelay: "0.25s" }}>
@@ -548,12 +581,13 @@ export default function HomePage() {
         <GuideSection />
         <ResultsSection />
         <TestimonialsSection/>
+         <BrandsSection />
         {/* <WhyWorkWithUs/> */}
         <PlanSection/>
         <ServicesSection />
         <StakesSection/>
         <ContactCTA />
-        {/* <BrandsSection /> */}
+       
         <Footer />
       </div>
     </>

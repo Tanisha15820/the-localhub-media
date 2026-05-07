@@ -590,6 +590,7 @@ import shopifyBg from "../assets/shopify.jpg";
 import openAIBg from "../assets/openAI.jpg";
 import hubspotBg from "../assets/hubspot.jpg";
 import canvaBg from "../assets/canva.jpg";
+import wordpressBg from "../assets/wordpress.jpg";
 
 const SERVICES = [
   { title: "Brand Development", sub: "Identity & positioning", color: "#F5A623", textColor: "#fff", size: "tall", img: brandImg },
@@ -610,6 +611,7 @@ const TOOLS = [
   { name: "OpenAI", sub: "AI automation", bgImg: openAIBg },
   { name: "HubSpot", sub: "CRM & marketing", bgImg: hubspotBg },
   { name: "Canva Pro", sub: "Design & creatives", bgImg: canvaBg },
+  { name: "WordPress", sub: "Development", bgImg: wordpressBg },
 ];
 
 function ServiceCard({ s, delay }) {

@@ -98,6 +98,16 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* ══════════════════════════════════════
+   🔥 REUSABLE SECTION HEADER
+══════════════════════════════════════ */
+
+.bs-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px;
+}
+
 .bs-pill {
   display: inline-flex;
   align-items: center;
@@ -109,6 +119,58 @@ body {
   margin-bottom: 20px;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 0.14em;
+}
+
+.bs-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #D97757;
+}
+
+.bs-pill-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #D97757;
+  text-transform: uppercase;
+}
+
+.bs-headline {
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #111;
+  margin: 0;
+}
+
+.bs-headline em {
+  font-style: normal;
+  color: #D97757;
+}
+
+.bs-subline {
+  margin-top: 22px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #7a7a7a;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .bs-header {
+    text-align: left;
+    margin-bottom: 40px;
+  }
+
+  .bs-headline {
+    font-size: 2.4rem;
+    line-height: 1.12;
+  }
+
+  .bs-subline {
+    font-size: 1rem;
+  }
 }
 
 /* ══════════════════════════════════════

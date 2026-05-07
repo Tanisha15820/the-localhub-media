@@ -572,8 +572,9 @@
 //   );
 // }
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import SectionHeader from "./SectionHeader";
+
 import brandImg from "../assets/brand-development.png";
 import contentImg from "../assets/content.png";
 import performanceImg from "../assets/performance.png";
@@ -593,15 +594,15 @@ import canvaBg from "../assets/canva.jpg";
 import wordpressBg from "../assets/wordpress.jpg";
 
 const SERVICES = [
-  { title: "Brand Development", sub: "Identity & positioning", color: "#F5A623", textColor: "#fff", size: "tall", img: brandImg },
-  { title: "Content Marketing", sub: "Authority at scale", color: "#1AB394", textColor: "#fff", size: "short", img: contentImg },
-  { title: "Performance Marketing", sub: "Paid that converts", color: "#111111", textColor: "#fff", size: "tall", img: performanceImg },
-  { title: "Online Marketing", sub: "Full-funnel strategy", color: "#4A90D9", textColor: "#fff", size: "short", img: onlineImg },
-  { title: "E-commerce Growth", sub: "Shopify & WordPress", color: "#4A6FE3", textColor: "#fff", size: "short", img: ecommerceImg },
-  { title: "Paid Marketing", sub: "Ads that convert", color: "#E8605A", textColor: "#fff", size: "tall", img: paidImg },
-  { title: "SEO", sub: "Search dominance", color: "#9B51E0", textColor: "#fff", size: "short", img: seoImg },
-  { title: "Social Media Marketing", sub: "Community & reach", color: "#F5C842", textColor: "#fff", size: "short", img: socialImg },
-  { title: "AEO", sub: "AI engine optimisation", color: "#1AB394", textColor: "#fff", size: "short", img: aeoImg },
+  { title: "Brand Development", sub: "Identity & positioning", size: "tall", img: brandImg },
+  { title: "Content Marketing", sub: "Authority at scale", size: "short", img: contentImg },
+  { title: "Performance Marketing", sub: "Paid that converts", size: "tall", img: performanceImg },
+  { title: "Online Marketing", sub: "Full-funnel strategy", size: "short", img: onlineImg },
+  { title: "E-commerce Growth", sub: "Shopify & WordPress", size: "short", img: ecommerceImg },
+  { title: "Paid Marketing", sub: "Ads that convert", size: "tall", img: paidImg },
+  { title: "SEO", sub: "Search dominance", size: "short", img: seoImg },
+  { title: "Social Media Marketing", sub: "Community & reach", size: "short", img: socialImg },
+  { title: "AEO", sub: "AI engine optimisation", size: "short", img: aeoImg },
 ];
 
 const TOOLS = [
@@ -622,7 +623,7 @@ function ServiceCard({ s, delay }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        borderRadius: "16px",
+        borderRadius: 16,
         overflow: "hidden",
         position: "relative",
         gridRow: s.size === "tall" ? "span 2" : "span 1",
@@ -639,17 +640,42 @@ function ServiceCard({ s, delay }) {
         src={s.img}
         alt={s.title}
         style={{
-          position: "absolute", inset: 0,
-          width: "100%", height: "100%",
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
           objectFit: "cover",
           transform: hovered ? "scale(1.08)" : "scale(1)",
           transition: "transform 0.4s ease",
         }}
       />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15))" }} />
-      <div style={{ position: "relative", zIndex: 2, padding: "16px 18px", display: "flex", flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
-        <div style={{ fontWeight: 700, fontSize: s.size === "tall" ? "1.05rem" : "0.9rem", color: s.textColor }}>{s.title}</div>
-        <div style={{ fontSize: "0.75rem", marginTop: "2px", color: s.textColor === "#fff" ? "rgba(255,255,255,0.8)" : "rgba(0,0,0,0.6)" }}>{s.sub}</div>
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15))",
+        }}
+      />
+
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          padding: "16px 18px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          height: "100%",
+          color: "#fff",
+        }}
+      >
+        <div style={{ fontWeight: 700, fontSize: s.size === "tall" ? "1.05rem" : "0.9rem" }}>
+          {s.title}
+        </div>
+        <div style={{ fontSize: "0.75rem", marginTop: 2, opacity: 0.85 }}>
+          {s.sub}
+        </div>
       </div>
     </div>
   );
@@ -664,63 +690,61 @@ function ToolCard({ tool }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         flex: "0 0 160px",
-        height: "110px",
-        borderRadius: "12px",
+        height: 110,
+        borderRadius: 12,
         overflow: "hidden",
         position: "relative",
         cursor: "pointer",
-        border: "0.5px solid #eee",
         transform: hovered ? "translateY(-4px)" : "none",
         boxShadow: hovered ? "0 8px 24px rgba(0,0,0,0.18)" : "none",
-        transition: "transform 0.25s ease, box-shadow 0.25s ease",
+        transition: "all 0.25s ease",
       }}
     >
       <img
         src={tool.bgImg}
         alt={tool.name}
         style={{
-          position: "absolute", inset: 0,
-          width: "100%", height: "100%",
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
           objectFit: "cover",
           transform: hovered ? "scale(1.07)" : "scale(1)",
           transition: "transform 0.35s ease",
         }}
       />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.68), rgba(0,0,0,0.12))" }} />
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "10px 12px" }}>
-        <div style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{tool.name}</div>
-        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginTop: 2 }}>{tool.sub}</div>
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to top, rgba(0,0,0,0.68), rgba(0,0,0,0.12))",
+        }}
+      />
+
+      <div style={{ position: "absolute", bottom: 0, padding: 10, color: "#fff" }}>
+        <div style={{ fontSize: 13, fontWeight: 600 }}>{tool.name}</div>
+        <div style={{ fontSize: 11, opacity: 0.7 }}>{tool.sub}</div>
       </div>
     </div>
   );
 }
 
 function ToolsMarquee() {
-  const [paused, setPaused] = useState(false);
-  // Duplicate for seamless loop
   const items = [...TOOLS, ...TOOLS];
 
   return (
-    <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      style={{
-        overflow: "hidden",
-        width: "100%",
-        cursor: "pointer",
-      }}
-    >
+    <div style={{ overflow: "hidden" }}>
       <div
         style={{
           display: "flex",
-          gap: "16px",
+          gap: 16,
           width: "max-content",
           animation: "marqueeScroll 18s linear infinite",
-          animationPlayState: paused ? "paused" : "running",
         }}
       >
         {items.map((t, i) => (
-          <ToolCard key={`${t.name}-${i}`} tool={t} />
+          <ToolCard key={i} tool={t} />
         ))}
       </div>
     </div>
@@ -729,17 +753,40 @@ function ToolsMarquee() {
 
 export default function ServicesSection() {
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+    <section style={{ background: "#F5F0E8", padding: "80px 20px" }}>
+      
+      {/* HEADER - FIXED SYSTEM */}
+      <SectionHeader
+        tag="What we do"
+        title="Every lever your brand"
+        highlight="needs to grow."
+        subtitle="No referrals. No hand-offs. One team that owns the full picture."
+      />
 
+      {/* SERVICES GRID */}
+      <div className="services-grid">
+        {SERVICES.map((s, i) => (
+          <ServiceCard key={i} s={s} delay={`${i * 0.08}s`} />
+        ))}
+      </div>
+
+      {/* TOOLS */}
+      <div style={{ marginTop: 60, textAlign: "center" }}>
+        <p style={{ marginBottom: 20, color: "#777", letterSpacing: "0.08em" }}>
+          Tools we use
+        </p>
+        <ToolsMarquee />
+      </div>
+
+      {/* ANIMATIONS */}
+      <style>{`
         @keyframes cardUp {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes marqueeScroll {
-          0%   { transform: translateX(0); }
+          0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
 
@@ -758,33 +805,6 @@ export default function ServicesSection() {
           }
         }
       `}</style>
-
-      <section style={{ background: "#F5F0E8", padding: "80px 20px" }}>
-
-        {/* Heading */}
-        <SectionHeader
-  tag="What we do"
-  title="Every lever your brand"
-  highlight="needs to grow."
-  subtitle="No referrals. No hand-offs. One team that owns the full picture."
-/>
-
-        {/* Services Grid */}
-        <div className="services-grid">
-          {SERVICES.map((s, i) => (
-            <ServiceCard key={s.title} s={s} delay={`${i * 0.08}s`} />
-          ))}
-        </div>
-
-        {/* Tools Marquee */}
-        <div style={{ marginTop: "60px", textAlign: "center" }}>
-          <p style={{ marginBottom: "20px", color: "#777", fontSize: "18px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-            Tools we use
-          </p>
-          <ToolsMarquee />
-        </div>
-
-      </section>
-    </>
+    </section>
   );
 }

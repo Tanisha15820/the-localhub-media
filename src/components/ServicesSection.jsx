@@ -260,111 +260,88 @@ import canvaBg from "../assets/canva.jpg";
 import wordpressBg from "../assets/wordpress.jpg";
 
 const SERVICES = [
-  { title: "Brand Development", sub: "Identity & positioning", size: "tall", img: brandImg },
-  { title: "Content Marketing", sub: "Authority at scale", size: "short", img: contentImg },
-  { title: "Performance Marketing", sub: "Paid that converts", size: "tall", img: performanceImg },
-  { title: "Online Marketing", sub: "Full-funnel strategy", size: "short", img: onlineImg },
-  { title: "E-commerce Growth", sub: "Shopify & WordPress", size: "short", img: ecommerceImg },
-  { title: "Paid Marketing", sub: "Ads that convert", size: "tall", img: paidImg },
-  { title: "SEO", sub: "Search dominance", size: "short", img: seoImg },
-  { title: "Social Media Marketing", sub: "Community & reach", size: "short", img: socialImg },
-  { title: "AEO", sub: "AI engine optimisation", size: "short", img: aeoImg },
+  { title: "Brand Development",     sub: "Identity & positioning", size: "tall",  img: brandImg },
+  { title: "Content Marketing",     sub: "Authority at scale",     size: "short", img: contentImg },
+  { title: "Performance Marketing", sub: "Paid that converts",     size: "tall",  img: performanceImg },
+  { title: "Online Marketing",      sub: "Full-funnel strategy",   size: "short", img: onlineImg },
+  { title: "E-commerce Growth",     sub: "Shopify & WordPress",    size: "short", img: ecommerceImg },
+  { title: "Paid Marketing",        sub: "Ads that convert",       size: "tall",  img: paidImg },
+  { title: "SEO",                   sub: "Search dominance",       size: "short", img: seoImg },
+  { title: "Social Media Marketing",sub: "Community & reach",      size: "short", img: socialImg },
+  { title: "AEO",                   sub: "AI engine optimisation", size: "short", img: aeoImg },
 ];
 
 const TOOLS = [
-  { name: "Meta Ads", sub: "Social campaigns", bgImg: metaBg },
-  { name: "Google Ads", sub: "Search & display", bgImg: googleBg },
-  { name: "Shopify", sub: "E-commerce", bgImg: shopifyBg },
-  { name: "OpenAI", sub: "AI automation", bgImg: openAIBg },
-  { name: "HubSpot", sub: "CRM & marketing", bgImg: hubspotBg },
-  { name: "Canva Pro", sub: "Design & creatives", bgImg: canvaBg },
-  { name: "WordPress", sub: "Development", bgImg: wordpressBg },
+  { name: "Meta Ads",   sub: "Social campaigns",   bgImg: metaBg },
+  { name: "Google Ads", sub: "Search & display",   bgImg: googleBg },
+  { name: "Shopify",    sub: "E-commerce",          bgImg: shopifyBg },
+  { name: "OpenAI",     sub: "AI automation",       bgImg: openAIBg },
+  { name: "HubSpot",    sub: "CRM & marketing",     bgImg: hubspotBg },
+  { name: "Canva Pro",  sub: "Design & creatives",  bgImg: canvaBg },
+  { name: "WordPress",  sub: "Development",         bgImg: wordpressBg },
 ];
 
-function ServiceCard({ s, delay }) {
+function ServiceCard({ s }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Reveal
-  delay={delay}
-  style={{
-    display: "contents",
-  }}
->
-      <div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        borderRadius: 16,
+        overflow: "hidden",
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        cursor: "pointer",
+        transform: hovered ? "translateY(-6px) scale(1.02)" : "translateY(0)",
+        boxShadow: hovered
+          ? "0 20px 50px rgba(0,0,0,0.25)"
+          : "0 2px 12px rgba(0,0,0,0.08)",
+        transition: "all 0.3s ease",
+      }}
+    >
+      <img
+        src={s.img}
+        alt={s.title}
         style={{
-          borderRadius: 16,
-          overflow: "hidden",
-          position: "relative",
-          gridRow: s.size === "tall" ? "span 2" : "span 1",
-          cursor: "pointer",
-          transform: hovered ? "translateY(-6px) scale(1.02)" : "translateY(0)",
-          boxShadow: hovered
-            ? "0 20px 50px rgba(0,0,0,0.25)"
-            : "0 2px 12px rgba(0,0,0,0.08)",
-          transition: "all 0.3s ease",
-          minHeight: s.size === "tall" ? "320px" : "155px",
+          position: "absolute",
+          inset: 0,
+          width: "100%",
           height: "100%",
+          objectFit: "cover",
+          transform: hovered ? "scale(1.08)" : "scale(1)",
+          transition: "transform 0.4s ease",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15))",
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          padding: "16px 18px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          height: "100%",
+          color: "#fff",
         }}
       >
-        <img
-          src={s.img}
-          alt={s.title}
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            transform: hovered ? "scale(1.08)" : "scale(1)",
-            transition: "transform 0.4s ease",
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15))",
-          }}
-        />
-
-        <div
-          style={{
-            position: "relative",
-            zIndex: 2,
-            padding: "16px 18px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            height: "100%",
-            color: "#fff",
-          }}
-        >
-          <div
-            style={{
-              fontWeight: 700,
-              fontSize: s.size === "tall" ? "1.05rem" : "0.9rem",
-            }}
-          >
-            {s.title}
-          </div>
-
-          <div
-            style={{
-              fontSize: "0.75rem",
-              marginTop: 2,
-              opacity: 0.85,
-            }}
-          >
-            {s.sub}
-          </div>
+        <div style={{ fontWeight: 700, fontSize: s.size === "tall" ? "1.05rem" : "0.9rem" }}>
+          {s.title}
+        </div>
+        <div style={{ fontSize: "0.75rem", marginTop: 2, opacity: 0.85 }}>
+          {s.sub}
         </div>
       </div>
-    </Reveal>
+    </div>
   );
 }
 
@@ -383,9 +360,7 @@ function ToolCard({ tool }) {
         position: "relative",
         cursor: "pointer",
         transform: hovered ? "translateY(-4px)" : "none",
-        boxShadow: hovered
-          ? "0 8px 24px rgba(0,0,0,0.18)"
-          : "none",
+        boxShadow: hovered ? "0 8px 24px rgba(0,0,0,0.18)" : "none",
         transition: "all 0.25s ease",
       }}
     >
@@ -402,31 +377,16 @@ function ToolCard({ tool }) {
           transition: "transform 0.35s ease",
         }}
       />
-
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.68), rgba(0,0,0,0.12))",
+          background: "linear-gradient(to top, rgba(0,0,0,0.68), rgba(0,0,0,0.12))",
         }}
       />
-
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          padding: 10,
-          color: "#fff",
-        }}
-      >
-        <div style={{ fontSize: 13, fontWeight: 600 }}>
-          {tool.name}
-        </div>
-
-        <div style={{ fontSize: 11, opacity: 0.7 }}>
-          {tool.sub}
-        </div>
+      <div style={{ position: "absolute", bottom: 0, padding: 10, color: "#fff" }}>
+        <div style={{ fontSize: 13, fontWeight: 600 }}>{tool.name}</div>
+        <div style={{ fontSize: 11, opacity: 0.7 }}>{tool.sub}</div>
       </div>
     </div>
   );
@@ -434,7 +394,6 @@ function ToolCard({ tool }) {
 
 function ToolsMarquee() {
   const items = [...TOOLS, ...TOOLS];
-
   return (
     <div style={{ overflow: "hidden" }}>
       <div
@@ -465,36 +424,37 @@ export default function ServicesSection() {
         subtitle="No referrals. No hand-offs. One team that owns the full picture."
       />
 
-      {/* SERVICES GRID */}
+      {/* SERVICES GRID — gridRow span Reveal div pe hai */}
       <div className="services-grid">
         {SERVICES.map((s, i) => (
-          <ServiceCard key={i} s={s} delay={i * 100} />
+          <Reveal
+            key={i}
+            delay={i * 80}
+            style={{
+              gridRow: s.size === "tall" ? "span 2" : "span 1",
+              minHeight: s.size === "tall" ? "320px" : "155px",
+            }}
+          >
+            <ServiceCard s={s} />
+          </Reveal>
         ))}
       </div>
 
       {/* TOOLS */}
-      <Reveal delay={120}>
+      <Reveal delay={200}>
         <div style={{ marginTop: 60, textAlign: "center" }}>
-          <p
-            style={{
-              marginBottom: 20,
-              color: "#777",
-              letterSpacing: "0.08em",
-            }}
-          >
+          <p style={{ marginBottom: 20, color: "#777", letterSpacing: "0.08em" }}>
             Tools we use
           </p>
-
           <ToolsMarquee />
         </div>
       </Reveal>
 
       <style>{`
         @keyframes marqueeScroll {
-          0% { transform: translateX(0); }
+          0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-
         .services-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -503,7 +463,6 @@ export default function ServicesSection() {
           max-width: 1040px;
           margin: 0 auto;
         }
-
         @media (max-width: 900px) {
           .services-grid {
             grid-template-columns: repeat(2, 1fr);

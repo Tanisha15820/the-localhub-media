@@ -1,229 +1,4 @@
-// import heroBanner from "../assets/hero-banner.png";
-// // import heroBanner from "../assets/banner.svg";
-
-// import BrandsSection from "../components/BrandsSection";
-// import ContactCTA from "../components/ContactCTA";
-// import Footer from "../components/Footer";
-// import GuideSection from "../components/GuideSection";
-
-// import ProblemSection from "../components/ProblemSection";
-// import ResultsSection from "../components/ResultsSection";
-// import ServicesSection from "../components/ServicesSection";
-// import WhyWorkWithUs from "../components/Whyworkwithus";
-
-// const featureItems = [
-//   "Brand Identity",
-//   "Content Marketing",
-//   "Performance Marketing",
-//   "SEO & AEO",
-//   "Shopify Growth",
-//   "Web Development",
-//   "Paid Ads",
-// ];
-
-// const doubled = [...featureItems, ...featureItems];
-
-// function HomePage() {
-//   return (
-//     <div>
-//       {/* ═══ HERO ═══ */}
-//       <section
-//         style={{
-//           position: "relative",
-//           minHeight: "100svh",   
-//           display: "flex",
-//           alignItems: "center",
-//           fontFamily: "var(--font-main, 'Poppins', sans-serif)",
-//           backgroundImage: `url(${heroBanner})`,
-//           backgroundSize: "cover",
-//           backgroundPosition: "center",
-//           backgroundRepeat: "no-repeat",
-//         }}
-//       >
-//         <style>{`
-//           /* ── Hero responsive ── */
-//           .hero-inner {
-//             position: relative;
-//             z-index: 10;
-//             width: 100%;
-//             max-width: 1260px;
-//             margin: 0 auto;
-//             padding: 112px 32px 64px;
-//             display: flex;
-//             flex-direction: row;
-//             align-items: center;
-//             justify-content: space-between;
-//             gap: 48px;
-//           }
-//           .hero-left  { max-width: 640px; }
-//           .hero-right { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
-
-//           .hero-h1 {
-//             font-size: clamp(2.2rem, 5vw, 3.75rem);
-//             font-weight: 800;
-//             color: #fff;
-//             line-height: 1.1;
-//             letter-spacing: -0.03em;
-//             margin: 0 0 20px;
-//           }
-//           .hero-sub {
-//             color: rgba(255,255,255,0.6);
-//             font-size: clamp(0.95rem, 2vw, 1.125rem);
-//             line-height: 1.75;
-//             max-width: 520px;
-//             margin: 0 0 40px;
-//           }
-//           .hero-cta-row {
-//             display: flex;
-//             flex-wrap: wrap;
-//             gap: 14px;
-//           }
-
-//           /* Feature scroll — hidden on small mobile, shown md+ */
-//           .hero-right { display: flex; }
-//           @media (max-width: 900px) {
-//             .hero-inner {
-//               flex-direction: column;
-//               align-items: flex-start;
-//               padding: 96px 24px 56px;
-//               gap: 32px;
-//             }
-//             .hero-right {
-//               width: 100%;
-//               justify-content: flex-start;
-//             }
-//           }
-//           @media (max-width: 600px) {
-//             .hero-inner { padding: 88px 20px 48px; }
-//             .hero-right { display: none; }   /* hide scroll list on very small screens */
-//             .hero-h1 { font-size: 2rem; }
-//             .hero-cta-row { flex-direction: column; }
-//             .hero-cta-row button { width: 100%; justify-content: center; }
-//           }
-//         `}</style>
-
-//         {/* Dark overlays */}
-//         <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.42)", zIndex: 0 }} />
-//         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 160, background: "linear-gradient(to bottom, rgba(0,0,0,0.7), transparent)", zIndex: 0 }} />
-//         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 128, background: "linear-gradient(to top, rgba(0,0,0,0.7), transparent)", zIndex: 0 }} />
-
-//         <div className="hero-inner">
-
-//           {/* LEFT CONTENT */}
-//           <div className="hero-left">
-//             {/* Badge */}
-//             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.10)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, padding: "8px 18px", marginBottom: 28 }}>
-//               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#D97757", flexShrink: 0 }} />
-//               <span style={{ color: "#fff", fontSize: "0.875rem", fontWeight: 500 }}>#1 Digital Human + AI Lead Growth Agency</span>
-//             </div>
-
-//             {/* Headline */}
-//             <h1 className="hero-h1">
-//               Your brand deserves more than{" "}
-//               <span style={{ color: "#D97757" }}>a good-looking website.</span>
-//             </h1>
-
-//             {/* Sub */}
-//             <p className="hero-sub">
-//               D2C brands that are scaling need a full-stack growth engine — one that builds authority, drives traffic, converts buyers, and compounds over time. That's not an agency. That's a partner.
-//               </p>
-
-//               <p className="hero-sub">
-//              TheLocalHub Media builds the complete digital infrastructure your brand needs to grow — and keep growing.
-//               </p>
-
-//               {/* Stats Row */}
-// <div
-//   style={{
-//     display: "flex",
-//     flexWrap: "wrap",
-//     gap: "28px",
-//     marginTop: "32px",
-//   }}
-// >
-//   {[
-//     "120+ brands scaled",
-//     "98% client retention",
-//     "4+ years experience",
-//   ].map((item, i) => (
-//     <div
-//       key={i}
-//       style={{
-//         color: "#EDE8D9", // bgSoft tone for soft premium feel
-//         fontSize: "0.9rem",
-//         fontWeight: 500,
-//         display: "flex",
-//         alignItems: "center",
-//         gap: "10px",
-//       }}
-//     >
-//       {/* Dot */}
-//       <span
-//         style={{
-//           width: "6px",
-//           height: "6px",
-//           borderRadius: "50%",
-//           background: "#D97757", // primary color
-//           display: "inline-block",
-//         }}
-//       />
-//       {item}
-//     </div>
-//   ))}
-// </div>
-
-//             {/* CTAs */}
-//             <div className="hero-cta-row" style={{ marginTop: "40px" }}>
-//               <button style={{ background: "#fff", color: "#1A1A1A", padding: "14px 28px", borderRadius: 10, fontWeight: 700, fontSize: "0.9rem", border: "none", cursor: "pointer", transition: "all 0.2s", fontFamily: "inherit" }}
-//                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.2)"; }}
-//                 onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
-//               >
-//                 Ready For Strategy Call
-//               </button>
-//               <button style={{ display: "flex", alignItems: "center", gap: 12, background: "rgba(255,255,255,0.08)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff", padding: "14px 28px", borderRadius: 10, fontWeight: 500, fontSize: "0.9rem", cursor: "pointer", transition: "all 0.2s", fontFamily: "inherit" }}
-//                 onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-//                 onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.transform = ""; }}
-//               >
-//                 <span  />
-//                 Book A Brand Performance Audit
-//               </button>
-//             </div>
-//           </div>
-
-//           {/* RIGHT — Auto-scroll Feature List */}
-//           <div className="hero-right">
-//             <div className="play-arrow flex-shrink-0" />
-//             <div className="feature-scroll-track">
-//               <div className="feature-scroll-inner">
-//                 {doubled.map((item, i) => (
-//                   <p key={i} className="feature-scroll-item">{item}</p>
-//                 ))}
-//               </div>
-//             </div>
-//           </div>
-
-//         </div>
-//       </section>
-//       <ProblemSection/>
-//       <GuideSection/>
-
-//       {/* <WhyWorkWithUs /> */}
-//       <ResultsSection />
-//       <ServicesSection />
-//       <ContactCTA />
-//       <BrandsSection />
-      
-//       <Footer />
-//     </div>
-//   );
-// }
-
-// export default HomePage;
-
-// HeroSection.jsx
-// Replace the entire <section> hero block in HomePage.jsx with this component.
-// Keep your imports for heroBanner etc. and pass it as a prop, or import directly here.
-
+import { useEffect, useRef, useState } from "react";
 import heroBanner from "../assets/hero-banner.png";
 import BrandsSection from "../components/BrandsSection";
 import ContactCTA from "../components/ContactCTA";
@@ -235,7 +10,7 @@ import ResultsSection from "../components/ResultsSection";
 import ServicesSection from "../components/ServicesSection";
 import StakesSection from "../components/StakesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
-import WhyWorkWithUs from "../components/Whyworkwithus";
+import Reveal from "../components/Reveal";
 
 const featureItems = [
   "Brand Identity",
@@ -250,10 +25,79 @@ const featureItems = [
 const doubled = [...featureItems, ...featureItems];
 
 const STATS = [
-  { num: "120+", label: "brands scaled" },
-  { num: "98%",  label: "client retention" },
-  { num: "4+",   label: "years experience" },
+  { num: "120", suffix: "+", label: "brands scaled" },
+  { num: "98",  suffix: "%", label: "client retention" },
+  { num: "4",   suffix: "+", label: "years experience" },
 ];
+
+/* ── Counter hook ── */
+function useCountUp(target, duration = 1800, isVisible = false) {
+  const [val, setVal] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!isVisible || started.current) return;
+    started.current = true;
+
+    const numeric = parseFloat(String(target).replace(/[^0-9.]/g, ""));
+    const start = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setVal(Math.floor(eased * numeric));
+      if (progress < 1) requestAnimationFrame(tick);
+      else setVal(numeric);
+    };
+
+    requestAnimationFrame(tick);
+  }, [isVisible, target, duration]);
+
+  return val;
+}
+
+/* ── Stat pill with counter ── */
+function StatPill({ s }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.05 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const count = useCountUp(s.num, 1500, visible);
+
+  return (
+    <div
+      ref={ref}
+      className="hero-stat"
+      style={{
+        background: "#fff",
+        border: "1px solid rgba(0,0,0,0.07)",
+        borderRadius: 12,
+        padding: "12px 20px",
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
+      }}
+    >
+      <span style={{ fontSize: "1.25rem", fontWeight: 800, color: "#D97757", letterSpacing: "-0.03em", lineHeight: 1 }}>
+        {count}{s.suffix}
+      </span>
+      <span style={{ fontSize: "0.78rem", fontWeight: 500, color: "#8C8C8C", lineHeight: 1.3 }}>
+        {s.label}
+      </span>
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -307,9 +151,7 @@ export default function HomePage() {
           transform: translateX(4px);
           border-color: transparent;
         }
-        .feat-item:hover .feat-arrow {
-          color: #fff;
-        }
+        .feat-item:hover .feat-arrow { color: #fff; }
         .feat-arrow {
           color: #D97757;
           font-size: 1rem;
@@ -428,7 +270,6 @@ export default function HomePage() {
             display: "flex",
             alignItems: "center",
             fontFamily: "'Poppins', sans-serif",
-            // background: "#FDF9F4",
             background: "#F0E8DC",
             overflow: "hidden",
           }}
@@ -470,51 +311,39 @@ export default function HomePage() {
 
               {/* Headline */}
               <div className="hero-animate" style={{ animationDelay: "0.15s" }}>
-  <h1
-    style={{
-      fontSize: "clamp(2.4rem, 5vw, 4rem)",
-      fontWeight: 700,
-      color: "#1A1A1A",
-      lineHeight: 1.08,
-      letterSpacing: "-0.035em",
-      margin: "0 0 22px",
-    }}
-  >
-    Your brand deserves
-    <br />
-    more than{" "}
-    <span
-      style={{
-        color: "#D97757",
-        position: "relative",
-        display: "inline-block",
-      }}
-    >
-      a good-looking
-      <svg
-        viewBox="0 0 300 10"
-        style={{
-          position: "absolute",
-          bottom: -4,
-          left: 0,
-          width: "100%",
-          height: 8,
-        }}
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0,7 Q37,1 75,7 Q112,13 150,7 Q187,1 225,7 Q262,13 300,7"
-          stroke="#D97757"
-          strokeWidth="2.5"
-          fill="none"
-          strokeLinecap="round"
-          opacity="0.5"
-        />
-      </svg>
-    </span>{" "}
-    website.
-  </h1>
-</div>
+                <h1
+                  style={{
+                    fontSize: "clamp(2.4rem, 5vw, 4rem)",
+                    fontWeight: 700,
+                    color: "#1A1A1A",
+                    lineHeight: 1.08,
+                    letterSpacing: "-0.035em",
+                    margin: "0 0 22px",
+                  }}
+                >
+                  Your brand deserves
+                  <br />
+                  more than{" "}
+                  <span style={{ color: "#D97757", position: "relative", display: "inline-block" }}>
+                    a good-looking
+                    <svg
+                      viewBox="0 0 300 10"
+                      style={{ position: "absolute", bottom: -4, left: 0, width: "100%", height: 8 }}
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M0,7 Q37,1 75,7 Q112,13 150,7 Q187,1 225,7 Q262,13 300,7"
+                        stroke="#D97757"
+                        strokeWidth="2.5"
+                        fill="none"
+                        strokeLinecap="round"
+                        opacity="0.5"
+                      />
+                    </svg>
+                  </span>{" "}
+                  website.
+                </h1>
+              </div>
 
               {/* Sub */}
               <div className="hero-animate" style={{ animationDelay: "0.25s" }}>
@@ -526,14 +355,11 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Stats row */}
+              {/* Stats row — StatPill components */}
               <div className="hero-animate" style={{ animationDelay: "0.35s" }}>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 38 }}>
                   {STATS.map((s, i) => (
-                    <div key={i} className="hero-stat" style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)", borderRadius: 12, padding: "12px 20px", display: "flex", alignItems: "center", gap: 10, boxShadow: "0 2px 12px rgba(0,0,0,0.05)" }}>
-                      <span style={{ fontSize: "1.25rem", fontWeight: 800, color: "#D97757", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.num}</span>
-                      <span style={{ fontSize: "0.78rem", fontWeight: 500, color: "#8C8C8C", lineHeight: 1.3 }}>{s.label}</span>
-                    </div>
+                    <StatPill key={i} s={s} />
                   ))}
                 </div>
               </div>
@@ -553,9 +379,8 @@ export default function HomePage() {
 
             {/* ══ RIGHT — Vertical auto-scroll feature list ══ */}
             <div className="hero-scroll-col" style={{ height: 420, overflow: "hidden", position: "relative" }}>
-              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, #FDF9F4, transparent)", zIndex: 2, pointerEvents: "none" }} />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to top, #FDF9F4, transparent)", zIndex: 2, pointerEvents: "none" }} />
-
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, #F0E8DC, transparent)", zIndex: 2, pointerEvents: "none" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to top, #F0E8DC, transparent)", zIndex: 2, pointerEvents: "none" }} />
               <div className="feat-scroll-inner">
                 {doubled.map((item, i) => (
                   <div key={i} className="feat-item">
@@ -577,18 +402,18 @@ export default function HomePage() {
 
         </section>
 
-        <ProblemSection />
-        <GuideSection />
-        <ResultsSection />
-        <TestimonialsSection/>
-         <BrandsSection />
-        {/* <WhyWorkWithUs/> */}
-        <PlanSection/>
-        <ServicesSection />
-        <StakesSection/>
-        <ContactCTA />
-       
+        {/* ══ SECTIONS ══ */}
+        <Reveal><ProblemSection /></Reveal>
+        <Reveal delay={50}><GuideSection /></Reveal>
+        <Reveal delay={50}><ResultsSection /></Reveal>
+        <Reveal delay={50}><TestimonialsSection /></Reveal>
+        <Reveal delay={50}><BrandsSection /></Reveal>
+        <Reveal delay={50}><PlanSection /></Reveal>
+        <Reveal delay={50}><ServicesSection /></Reveal>
+        <Reveal delay={50}><StakesSection /></Reveal>
+        <Reveal delay={50}><ContactCTA /></Reveal>
         <Footer />
+
       </div>
     </>
   );

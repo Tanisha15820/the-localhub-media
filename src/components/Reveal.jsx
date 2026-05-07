@@ -1,3 +1,5 @@
+
+
 // import { useEffect, useRef, useState } from "react";
 
 // export default function Reveal({ children, delay = 0, style = {}, className = "" }) {
@@ -10,11 +12,9 @@
 
 //     const obs = new IntersectionObserver(
 //       ([entry]) => {
-//         // scroll in  → show
-//         // scroll out → hide again (repeat every time)
 //         setVisible(entry.isIntersecting);
 //       },
-//       { threshold: 0.15 }
+//       { threshold: 0.05 }
 //     );
 
 //     obs.observe(el);
@@ -27,10 +27,12 @@
 //       className={className}
 //       style={{
 //         opacity: visible ? 1 : 0,
-//         transform: visible ? "translateY(0px)" : "translateY(50px)",
+//         transform: visible
+//           ? "translateY(0px) scale(1)"
+//           : "translateY(60px) scale(0.97)",
 //         transition: `
-//           opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
-//           transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms
+//           opacity   0.75s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
+//           transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms
 //         `,
 //         willChange: "opacity, transform",
 //         ...style,
@@ -40,6 +42,7 @@
 //     </div>
 //   );
 // }
+
 import { useEffect, useRef, useState } from "react";
 
 export default function Reveal({ children, delay = 0, style = {}, className = "" }) {
@@ -52,9 +55,9 @@ export default function Reveal({ children, delay = 0, style = {}, className = ""
 
     const obs = new IntersectionObserver(
       ([entry]) => {
-        setVisible(entry.isIntersecting);
+        if (entry.isIntersecting) setVisible(true);
       },
-      { threshold: 0.05 } // ← low threshold: element ka sirf 5% dikhne par trigger
+      { threshold: 0.05 }
     );
 
     obs.observe(el);

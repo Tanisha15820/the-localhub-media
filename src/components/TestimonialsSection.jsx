@@ -1,8 +1,7 @@
 
 
-// import { useState } from "react";
+// import { useState, useEffect, useRef } from "react";
 // import SectionHeader from "./SectionHeader";
-// import Reveal from "./Reveal";
 
 // const TESTIMONIALS = [
 //   {
@@ -12,7 +11,8 @@
 //     role: "Founder, Skincare Brand",
 //     company: "Skincare Brand",
 //     stars: 5,
-//     quote: "Within 90 days, our Shopify store conversion rate went from 1.2% to 3.8%. The team understood D2C deeply and delivered results we didn't think were possible this fast.",
+//     quote:
+//       "Within 90 days, our Shopify store conversion rate went from 1.2% to 3.8%. The team understood D2C deeply and delivered results we didn't think were possible this fast.",
 //   },
 //   {
 //     avatar: "../assets/arjun.png",
@@ -21,7 +21,8 @@
 //     role: "Co-founder, Fitness D2C",
 //     company: "Fitness D2C",
 //     stars: 5,
-//     quote: "Finally an agency that thinks like a business partner, not a vendor. Our SEO traffic alone pays for everything. The ROI has been extraordinary.",
+//     quote:
+//       "Finally an agency that thinks like a business partner, not a vendor. Our SEO traffic alone pays for everything. The ROI has been extraordinary.",
 //   },
 //   {
 //     avatar: "../assets/meera.png",
@@ -30,9 +31,54 @@
 //     role: "CMO, Home Decor Brand",
 //     company: "Home Decor Brand",
 //     stars: 5,
-//     quote: "AEO was something we'd never heard of. Six months later, our brand appears in AI search results constantly. This team is ahead of the curve.",
+//     quote:
+//       "AEO was something we'd never heard of. Six months later, our brand appears in AI search results constantly. This team is ahead of the curve.",
 //   },
 // ];
+
+// /* 🔥 DRAMATIC REVEAL (snap + tilt + zoom) */
+// function DramaticReveal({ children, delay = 0 }) {
+//   const ref = useRef(null);
+//   const [visible, setVisible] = useState(false);
+
+//   useEffect(() => {
+//     const el = ref.current;
+//     if (!el) return;
+
+//     const obs = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setVisible(true);
+//           obs.unobserve(el);
+//         }
+//       },
+//       { threshold: 0.2 }
+//     );
+
+//     obs.observe(el);
+//     return () => obs.disconnect();
+//   }, []);
+
+//   return (
+//     <div
+//       ref={ref}
+//       style={{
+//         opacity: visible ? 1 : 0,
+//         transform: visible
+//           ? "scale(1) rotate(0deg)"
+//           : "scale(0.85) rotate(-6deg)",
+
+//         transition: `
+//           opacity 0.55s ease ${delay}ms,
+//           transform 0.65s cubic-bezier(0.2, 1.4, 0.3, 1) ${delay}ms
+//         `,
+//         willChange: "opacity, transform",
+//       }}
+//     >
+//       {children}
+//     </div>
+//   );
+// }
 
 // export default function TestimonialsSection() {
 //   const [activeCard, setActiveCard] = useState(null);
@@ -53,6 +99,7 @@
 //           background: #F5F0E8;
 //           padding: 88px 40px;
 //         }
+
 //         .tc-grid {
 //           display: grid;
 //           grid-template-columns: repeat(3, 1fr);
@@ -60,93 +107,109 @@
 //           max-width: 1040px;
 //           margin: 0 auto;
 //         }
+
 //         @media (max-width: 900px) {
-//           .tc-grid { grid-template-columns: 1fr; max-width: 480px; }
+//           .tc-grid { grid-template-columns: 1fr; }
 //         }
-//         .tc-card {
-//           background: #fff;
-//           border-radius: 16px;
-//           border: 1px solid rgba(0,0,0,0.07);
-//           overflow: hidden;
-//           display: flex;
-//           flex-direction: column;
-//           cursor: pointer;
-//           transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
-//                       box-shadow 0.35s cubic-bezier(0.22,1,0.36,1),
-//                       border-color 0.25s ease;
-//         }
+
+//        .tc-card {
+//   background: #fff;
+//   border-radius: 16px;
+//   border: 1px solid rgba(0,0,0,0.07);
+//   overflow: hidden;
+//   cursor: pointer;
+
+//   /* ✅ FIXED HEIGHT STRUCTURE */
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+
+//   transition: transform 0.25s ease, box-shadow 0.25s ease;
+// }
+
 //         .tc-card:hover {
-//           transform: translateY(-8px) scale(1.025);
-//           box-shadow: 0 20px 56px rgba(217,119,87,0.16);
-//           border-color: #D97757;
+//           transform: translateY(-10px) scale(1.03);
+//           box-shadow: 0 22px 60px rgba(217,119,87,0.18);
 //         }
-//         .tc-card.active {
-//           transform: translateY(-8px) scale(1.03);
-//           box-shadow: 0 24px 64px rgba(217,119,87,0.22);
-//           border-color: #D97757;
-//         }
-//         .tc-card:active { transform: scale(0.98); }
+
 //         .tc-header {
 //           background: #F5F0E8;
 //           padding: 20px 22px;
 //           display: flex;
-//           align-items: center;
 //           gap: 14px;
 //           border-bottom: 1px solid rgba(0,0,0,0.07);
 //         }
+
 //         .tc-avatar {
-//           width: 54px; height: 54px;
+//           width: 54px;
+//           height: 54px;
 //           border-radius: 50%;
 //           border: 2px solid #D97757;
-//           background: rgba(217,119,87,0.12);
 //           overflow: hidden;
-//           flex-shrink: 0;
-//           display: flex; align-items: center; justify-content: center;
-//           font-size: 0.8rem; font-weight: 700; color: #D97757;
-//           transition: background 0.25s, color 0.25s;
-//           position: relative;
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//           font-weight: 700;
+//           color: #D97757;
 //         }
-//         .tc-card.active .tc-avatar,
-//         .tc-card:hover .tc-avatar { background: #D97757; color: #fff; }
-//         .tc-avatar img { width: 100%; height: 100%; object-fit: cover; }
-//         .tc-name { font-size: 0.95rem; font-weight: 700; color: #1A1A1A; letter-spacing: -0.01em; line-height: 1.2; text-transform: uppercase; }
-//         .tc-role { font-size: 0.78rem; color: #D97757; font-weight: 600; margin-top: 2px; }
-//         .tc-body { padding: 22px 22px 0; flex: 1; display: flex; flex-direction: column; }
-//         .tc-stars { color: #f5a623; font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 14px; }
-//         .tc-quote-wrap { flex: 1; position: relative; overflow: hidden; }
+
+//         .tc-card:hover .tc-avatar {
+//           background: #D97757;
+//           color: #fff;
+//         }
+
+//         .tc-name {
+//           font-weight: 700;
+//           font-size: 0.95rem;
+//           text-transform: uppercase;
+//         }
+
+//         .tc-role {
+//           font-size: 0.78rem;
+//           color: #D97757;
+//         }
+
+//         .tc-body {
+//           padding: 22px;
+//         }
+
+//         .tc-stars {
+//           color: #f5a623;
+//           margin-bottom: 12px;
+//         }
+
 //         .tc-quote {
-//           font-size: 0.855rem; color: #4A4A4A; line-height: 1.85; font-style: italic;
-//           display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
-//           overflow: hidden; transition: all 0.3s ease;
+//           font-size: 0.85rem;
+//           line-height: 1.8;
+//           font-style: italic;
+//           color: #444;
 //         }
-//         .tc-quote.expanded { display: block; -webkit-line-clamp: unset; overflow: visible; }
-//         .tc-quote::before {
-//   content: "“";
-//   font-size: 2.2rem;
-//   color: #D97757;
-//   line-height: 0;
-//   vertical-align: -0.45rem;
-//   margin-right: 3px;
-//   font-style: normal;
-// }
+
 //         .tc-footer {
-//           padding: 16px 22px 20px;
-//           display: flex; align-items: center; justify-content: space-between;
-//           border-top: 1px solid rgba(0,0,0,0.07); margin-top: 18px;
+//           padding: 16px 22px;
+//           display: flex;
+//           justify-content: space-between;
+//           border-top: 1px solid rgba(0,0,0,0.07);
 //         }
-//         .tc-company { font-size: 0.78rem; font-weight: 600; color: #D97757; }
+
+//         .tc-company {
+//           color: #D97757;
+//           font-weight: 600;
+//           font-size: 0.78rem;
+//         }
+
 //         .tc-read-more {
-//           font-size: 0.72rem; font-weight: 600; color: #888;
-//           background: none; border: none; cursor: pointer; padding: 0;
-//           font-family: 'Poppins', sans-serif; transition: color 0.2s;
-//           text-decoration: underline; text-underline-offset: 3px;
+//           background: none;
+//           border: none;
+//           font-size: 0.72rem;
+//           cursor: pointer;
+//           text-decoration: underline;
 //         }
-//         .tc-read-more:hover { color: #D97757; }
 //       `}</style>
 
 //       <section className="tc-wrap">
 
-//         {/* Header — SectionHeader has Reveal inside */}
+//         {/* Header stays normal */}
 //         <SectionHeader
 //           tag="Client Results"
 //           title="What our clients"
@@ -154,41 +217,51 @@
 //           subtitle=""
 //         />
 
-//         {/* Cards — each reveals individually */}
+//         {/* DRAMATIC CARDS */}
 //         <div className="tc-grid">
 //           {TESTIMONIALS.map((t, i) => (
-//             <Reveal key={i} delay={i * 120}>
+//             <DramaticReveal key={i} delay={i * 120}>
 //               <div
-//                 className={`tc-card ${activeCard === i ? "active" : ""}`}
-//                 onClick={() => setActiveCard(activeCard === i ? null : i)}
+//                 className="tc-card"
+//                 onClick={() =>
+//                   setActiveCard(activeCard === i ? null : i)
+//                 }
 //               >
 //                 <div className="tc-header">
 //                   <div className="tc-avatar">
-//                     <img src={t.avatar} alt={t.name} onError={(e) => { e.target.style.display = "none"; }} />
-//                     <span style={{ position: "absolute" }}>{t.initials}</span>
+//                     <img
+//                       src={t.avatar}
+//                       alt={t.name}
+//                       onError={(e) =>
+//                         (e.target.style.display = "none")
+//                       }
+//                     />
+//                     <span>{t.initials}</span>
 //                   </div>
+
 //                   <div>
 //                     <div className="tc-name">{t.name}</div>
-//                     <div className="tc-role">{t.role.split(",")[0]}</div>
+//                     <div className="tc-role">{t.role}</div>
 //                   </div>
 //                 </div>
+
 //                 <div className="tc-body">
-//                   <div className="tc-stars">{"★".repeat(t.stars)}</div>
-//                   <div className="tc-quote-wrap">
-//                     <p className={`tc-quote ${expanded[i] ? "expanded" : ""}`}>{t.quote}</p>
+//                   <div className="tc-stars">
+//                     {"★".repeat(t.stars)}
 //                   </div>
+//                   <p className="tc-quote">{t.quote}</p>
 //                 </div>
+
 //                 <div className="tc-footer">
 //                   <span className="tc-company">{t.company}</span>
-//                   <button className="tc-read-more" onClick={(e) => toggleExpand(i, e)}>
-//                     {expanded[i] ? "Show less" : "Read more..."}
+//                   <button className="tc-read-more">
+//                     Read more
 //                   </button>
 //                 </div>
 //               </div>
-//             </Reveal>
+//             </DramaticReveal>
 //           ))}
 //         </div>
-
 //       </section>
 //     </>
 //   );
@@ -230,58 +303,36 @@ const TESTIMONIALS = [
   },
 ];
 
-/* 🔥 DRAMATIC REVEAL (snap + tilt + zoom) */
-function DramaticReveal({ children, delay = 0 }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.unobserve(el);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible
-          ? "scale(1) rotate(0deg)"
-          : "scale(0.85) rotate(-6deg)",
-
-        transition: `
-          opacity 0.55s ease ${delay}ms,
-          transform 0.65s cubic-bezier(0.2, 1.4, 0.3, 1) ${delay}ms
-        `,
-        willChange: "opacity, transform",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
 export default function TestimonialsSection() {
   const [activeCard, setActiveCard] = useState(null);
-  const [expanded, setExpanded] = useState({});
+  const sectionRef = useRef(null);
+  const [animate, setAnimate] = useState(false);
 
-  const toggleExpand = (i, e) => {
-    e.stopPropagation();
-    setExpanded((prev) => ({ ...prev, [i]: !prev[i] }));
-  };
+  useEffect(() => {
+  const section = sectionRef.current;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setAnimate(false);
+
+        setTimeout(() => {
+          setAnimate(true);
+        }, 50);
+      } else {
+        // 🔥 IMPORTANT: reset when leaving viewport
+        setAnimate(false);
+      }
+    },
+    {
+      threshold: 0.25,
+    }
+  );
+
+  if (section) observer.observe(section);
+
+  return () => observer.disconnect();
+}, []);
 
   return (
     <>
@@ -303,23 +354,30 @@ export default function TestimonialsSection() {
         }
 
         @media (max-width: 900px) {
-          .tc-grid { grid-template-columns: 1fr; }
+          .tc-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .tc-wrap {
+            padding: 80px 20px;
+          }
         }
 
-       .tc-card {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid rgba(0,0,0,0.07);
-  overflow: hidden;
-  cursor: pointer;
+        .tc-card {
+          background: #fff;
+          border-radius: 16px;
+          border: 1px solid rgba(0,0,0,0.07);
+          overflow: hidden;
+          cursor: pointer;
 
-  /* ✅ FIXED HEIGHT STRUCTURE */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
 
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
+          transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+        }
 
         .tc-card:hover {
           transform: translateY(-10px) scale(1.03);
@@ -345,6 +403,14 @@ export default function TestimonialsSection() {
           justify-content: center;
           font-weight: 700;
           color: #D97757;
+          flex-shrink: 0;
+          transition: all 0.3s ease;
+        }
+
+        .tc-avatar img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .tc-card:hover .tc-avatar {
@@ -361,15 +427,18 @@ export default function TestimonialsSection() {
         .tc-role {
           font-size: 0.78rem;
           color: #D97757;
+          margin-top: 2px;
         }
 
         .tc-body {
           padding: 22px;
+          flex: 1;
         }
 
         .tc-stars {
           color: #f5a623;
           margin-bottom: 12px;
+          font-size: 1.1rem;
         }
 
         .tc-quote {
@@ -383,6 +452,7 @@ export default function TestimonialsSection() {
           padding: 16px 22px;
           display: flex;
           justify-content: space-between;
+          align-items: center;
           border-top: 1px solid rgba(0,0,0,0.07);
         }
 
@@ -398,12 +468,94 @@ export default function TestimonialsSection() {
           font-size: 0.72rem;
           cursor: pointer;
           text-decoration: underline;
+          color: #1A1A1A;
+        }
+
+        /* ───────── SAME BELIEF SECTION ANIMATION ───────── */
+
+        @keyframes spreadLeft {
+          0% {
+            opacity: 0;
+            transform:
+              translateX(180px)
+              translateY(40px)
+              scale(0.2)
+              rotate(12deg);
+            filter: blur(12px);
+          }
+
+          100% {
+            opacity: 1;
+            transform:
+              translateX(0)
+              translateY(0)
+              scale(1)
+              rotate(0deg);
+            filter: blur(0);
+          }
+        }
+
+        @keyframes spreadCenter {
+          0% {
+            opacity: 0;
+            transform:
+              translateY(80px)
+              scale(0.2);
+            filter: blur(12px);
+          }
+
+          100% {
+            opacity: 1;
+            transform:
+              translateY(0)
+              scale(1);
+            filter: blur(0);
+          }
+        }
+
+        @keyframes spreadRight {
+          0% {
+            opacity: 0;
+            transform:
+              translateX(-180px)
+              translateY(40px)
+              scale(0.2)
+              rotate(-12deg);
+            filter: blur(12px);
+          }
+
+          100% {
+            opacity: 1;
+            transform:
+              translateX(0)
+              translateY(0)
+              scale(1)
+              rotate(0deg);
+            filter: blur(0);
+          }
+        }
+
+        .pre-animation {
+          opacity: 0;
+        }
+
+        .spread-left.animate {
+          animation: spreadLeft 1s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+
+        .spread-center.animate {
+          animation: spreadCenter 1s cubic-bezier(0.22,1,0.36,1) forwards;
+          animation-delay: 0.15s;
+        }
+
+        .spread-right.animate {
+          animation: spreadRight 1s cubic-bezier(0.22,1,0.36,1) forwards;
+          animation-delay: 0.3s;
         }
       `}</style>
 
-      <section className="tc-wrap">
+      <section ref={sectionRef} className="tc-wrap">
 
-        {/* Header stays normal */}
         <SectionHeader
           tag="Client Results"
           title="What our clients"
@@ -411,51 +563,68 @@ export default function TestimonialsSection() {
           subtitle=""
         />
 
-        {/* DRAMATIC CARDS */}
         <div className="tc-grid">
           {TESTIMONIALS.map((t, i) => (
-            <DramaticReveal key={i} delay={i * 120}>
-              <div
-                className="tc-card"
-                onClick={() =>
-                  setActiveCard(activeCard === i ? null : i)
+            <div
+              key={i}
+              className={`
+                tc-card
+                pre-animation
+                ${
+                  i === 0
+                    ? "spread-left"
+                    : i === 1
+                    ? "spread-center"
+                    : "spread-right"
                 }
-              >
-                <div className="tc-header">
-                  <div className="tc-avatar">
-                    <img
-                      src={t.avatar}
-                      alt={t.name}
-                      onError={(e) =>
-                        (e.target.style.display = "none")
-                      }
-                    />
-                    <span>{t.initials}</span>
-                  </div>
+                ${animate ? "animate" : ""}
+              `}
+              onClick={() =>
+                setActiveCard(activeCard === i ? null : i)
+              }
+            >
+              <div className="tc-header">
 
-                  <div>
-                    <div className="tc-name">{t.name}</div>
-                    <div className="tc-role">{t.role}</div>
-                  </div>
+                <div className="tc-avatar">
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    onError={(e) =>
+                      (e.target.style.display = "none")
+                    }
+                  />
+                  <span>{t.initials}</span>
                 </div>
 
-                <div className="tc-body">
-                  <div className="tc-stars">
-                    {"★".repeat(t.stars)}
-                  </div>
-                  <p className="tc-quote">{t.quote}</p>
-                </div>
-
-                <div className="tc-footer">
-                  <span className="tc-company">{t.company}</span>
-                  <button className="tc-read-more">
-                    Read more
-                  </button>
+                <div>
+                  <div className="tc-name">{t.name}</div>
+                  <div className="tc-role">{t.role}</div>
                 </div>
               </div>
-            </DramaticReveal>
+
+              <div className="tc-body">
+                <div className="tc-stars">
+                  {"★".repeat(t.stars)}
+                </div>
+
+                <p className="tc-quote">
+                  {t.quote}
+                </p>
+              </div>
+
+              <div className="tc-footer">
+                <span className="tc-company">
+                  {t.company}
+                </span>
+
+                <button className="tc-read-more">
+                  Read more
+                </button>
+              </div>
+            </div>
           ))}
         </div>
+
       </section>
     </>
   );

@@ -173,45 +173,108 @@ export default function HomePage() {
         .hero-stat:hover { transform: translateY(-3px); }
 
         .hero-btn-primary {
-          background: #D97757;
-          color: #fff;
-          padding: 15px 30px;
-          border-radius: 12px;
-          font-weight: 700;
-          font-size: 0.9rem;
-          border: none;
-          cursor: pointer;
-          font-family: 'Poppins', sans-serif;
-          transition: all 0.25s ease;
-          box-shadow: 0 8px 28px rgba(217,119,87,0.35);
-          display: inline-flex; align-items: center; gap: 8px;
-        }
-        .hero-btn-primary:hover {
-          background: #C05A32;
-          transform: translateY(-3px);
-          box-shadow: 0 16px 40px rgba(217,119,87,0.42);
-        }
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  background: #D97757;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 28px rgba(217,119,87,0.35);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-btn-primary::before {
+  content: "";
+  position: absolute;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  background: #fff;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
+
+  z-index: -1;
+}
+
+.hero-btn-primary:hover::before {
+  transform: translate(-50%, -50%) scale(18);
+}
+
+.hero-btn-primary:hover {
+  color: #D97757;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(217,119,87,0.28);
+}
 
         .hero-btn-secondary {
-          background: #fff;
-          color: #1A1A1A;
-          padding: 15px 30px;
-          border-radius: 12px;
-          font-weight: 600;
-          font-size: 0.9rem;
-          border: 1.5px solid rgba(0,0,0,0.10);
-          cursor: pointer;
-          font-family: 'Poppins', sans-serif;
-          transition: all 0.25s ease;
-          box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-          display: inline-flex; align-items: center; gap: 8px;
-        }
-        .hero-btn-secondary:hover {
-          border-color: #D97757;
-          color: #D97757;
-          transform: translateY(-3px);
-          box-shadow: 0 8px 28px rgba(217,119,87,0.15);
-        }
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  background: #fff;
+  color: #1A1A1A;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1.5px solid rgba(0,0,0,0.10);
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-btn-secondary::before {
+  content: "";
+  position: absolute;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  background: #D97757;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
+
+  z-index: -1;
+}
+
+.hero-btn-secondary:hover::before {
+  transform: translate(-50%, -50%) scale(18);
+}
+
+.hero-btn-secondary:hover {
+  color: #fff;
+  border-color: #D97757;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(217,119,87,0.25);
+}
 
         @keyframes drift {
           0%, 100% { transform: translate(0, 0) scale(1); }

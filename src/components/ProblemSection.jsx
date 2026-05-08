@@ -1,30 +1,37 @@
 
 
 import { useState } from "react";
-import adsImg from "../assets/ads.png";
-import contentImg from "../assets/content.png";
-import websiteImg from "../assets/website.png";
-import brandImg from "../assets/brand.png";
+// import adsImg from "../assets/ads.png";
+import onlineImg from "../assets/online.png";
+// import contentImg from "../assets/content.png";
+import socialImg from "../assets/social.png";
+// import websiteImg from "../assets/website.png";
+import performanceImg from "../assets/performance.png";
+// import brandImg from "../assets/brand.png";
+import brandImg from "../assets/brand-development.png";
 import SectionHeader from "./SectionHeader";
 import Reveal from "./Reveal"; // ← bahar wala Reveal use ho raha hai
 
 const PROBLEMS = [
   {
-    img: adsImg,
+    // img: adsImg,
+    img: onlineImg,
     title: "You run ads",
     desc: "but your landing page doesn't convert.",
     badge: "Low ROAS",
     badgeColor: "#E05A3A",
   },
   {
-    img: contentImg,
+    // img: contentImg,
+     img: socialImg,
     title: "You publish content",
     desc: "but no one finds it on Google or AI search.",
     badge: "0 Rankings",
     badgeColor: "#C05A32",
   },
   {
-    img: websiteImg,
+    // img: websiteImg,
+    img: performanceImg,
     title: "You have a website",
     desc: "but it's slow, unbranded, and leaking revenue.",
     badge: "High Bounce",
@@ -48,7 +55,8 @@ export default function ProblemSection() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
         .prob-section {
-          background: #F5F0E8;
+          // background: #F5F0E8;
+           background: #ffffff;
           padding: 100px 24px 110px;
           font-family: 'Poppins', sans-serif;
           overflow: hidden;

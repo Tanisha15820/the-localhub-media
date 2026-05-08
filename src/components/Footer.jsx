@@ -128,9 +128,10 @@ const quickLinks = [
 const services = [
   "Digital Marketing",
   "SEO Optimization",
+  "AEO(Answer Engine Optimization)",
   "Performance Marketing",
   "Brand Strategy",
-  "Social Media Marketing",
+  "Social Media Marketing",  
 ];
 
 export default function Footer() {

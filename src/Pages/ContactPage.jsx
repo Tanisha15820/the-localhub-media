@@ -42,6 +42,7 @@ export default function ContactPage() {
   };
 
   return (
+   <>
     <section className="min-h-screen bg-bgMain py-20 px-6 font-main overflow-hidden relative">
       {/* Background Glow */}
       <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full" />
@@ -204,5 +205,38 @@ export default function ContactPage() {
         </div>
       </div>
     </section>
+
+    <section className="py-20 px-6">
+  <div className="max-w-5xl mx-auto bg-primary rounded-[40px] p-10 md:p-16 text-center text-white relative overflow-hidden">
+
+    {/* Glow */}
+    <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-white/10 blur-[100px]" />
+    <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-white/10 blur-[100px]" />
+
+    <p className="uppercase tracking-[4px] text-sm mb-4 text-white/70">
+      Free Consultation
+    </p>
+
+    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+      Ready For Your <br />
+      Strategy Call?
+    </h2>
+
+    <p className="mt-6 text-white/80 max-w-2xl mx-auto leading-relaxed">
+      Let’s discuss your goals, brand positioning, and how we can
+      help scale your business digitally.
+    </p>
+
+    <a
+      href="https://calendly.com/tanisha15820/30min"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 mt-8 bg-white text-primary px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition duration-300"
+    >
+      Book Strategy Call
+    </a>
+  </div>
+</section>
+   </>
   );
 }

@@ -7,7 +7,6 @@ const navLinks = [
   { label: "Home",      to: "/" },
   { label: "Services",  to: "/services" },
   { label: "About",     to: "/about" },
-  { label: "Portfolio", to: "/portfolio" },
   { label: "Contact",   to: "/contact" },
 ];
 
@@ -168,8 +167,10 @@ function Header() {
           >
             Ready For Strategy Call
           </Link> */}
-          <Link
-  to="/contact"
+ <a
+  href="https://calendly.com/tanisha15820/30min"
+  target="_blank"
+  rel="noopener noreferrer"
   className="hdr-cta-btn ml-4 text-sm font-semibold px-5 py-2.5"
   style={{
     textDecoration: "none",
@@ -179,7 +180,7 @@ function Header() {
   }}
 >
   Ready For Strategy Call
-</Link>
+</a>
         </nav>
 
         {/* Mobile Hamburger */}

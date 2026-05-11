@@ -69,9 +69,14 @@ export default function CTASection() {
         {/* Button + subtext */}
         <Reveal delay={100}>
           <div className="mt-8">
-            <button className="bg-primary text-white px-7 py-3 rounded-full text-sm font-semibold shadow-md hover:shadow-lg hover:scale-[1.05] transition-all duration-300">
-              Book your free strategy call
-            </button>
+ <a
+  href="https://calendly.com/tanisha15820/30min"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hdr-cta-btn inline-block bg-primary text-white px-7 py-3 rounded-full text-sm font-semibold shadow-md"
+>
+  Book your free strategy call
+</a>
             <p className="text-textSecondary text-sm mt-3">
               No pitch. No pressure. Just clarity on what's next.
             </p>

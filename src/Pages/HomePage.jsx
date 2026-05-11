@@ -429,10 +429,15 @@ export default function HomePage() {
 
               {/* CTAs */}
               <div className="hero-animate hero-cta-row-light" style={{ animationDelay: "0.45s", display: "flex", flexWrap: "wrap", gap: 14 }}>
-                <button className="hero-btn-primary">
-                  Ready For Strategy Call
-                  <span style={{ fontSize: "1rem" }}>→</span>
-                </button>
+                <a
+  href="https://calendly.com/tanisha15820/30min"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hero-btn-primary"
+>
+  Ready For Strategy Call
+  <span style={{ fontSize: "1rem" }}>→</span>
+</a>
                 <button className="hero-btn-secondary">
                   Book A Brand Performance Audit
                 </button>

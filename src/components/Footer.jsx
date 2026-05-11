@@ -118,11 +118,9 @@ import {
 } from "@mui/icons-material";
 
 const quickLinks = [
-  "About Us",
-  "Services",
-  "Portfolio",
-  "Our Team",
-  "Contact Us",
+  { label: "About Us", link: "/about" },
+  { label: "Services", link: "/services" },
+  { label: "Contact Us", link: "/contact" },
 ];
 
 const services = [
@@ -223,32 +221,30 @@ export default function Footer() {
 
               <div className="space-y-5">
 
-                {quickLinks.map((item, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    className="
-                      group flex items-center gap-3
-                      text-white/60 hover:text-white
-                      transition
-                    "
-                  >
+               {quickLinks.map((item, i) => (
+  <a
+    key={i}
+    href={item.link}
+    className="
+      group flex items-center gap-3
+      text-white/60 hover:text-white
+      transition
+    "
+  >
+    <ArrowOutward
+      sx={{ fontSize: 16 }}
+      className="
+        text-primary
+        opacity-0 -translate-x-2
+        group-hover:opacity-100
+        group-hover:translate-x-0
+        transition-all duration-300
+      "
+    />
 
-                    <ArrowOutward
-                      sx={{ fontSize: 16 }}
-                      className="
-                        text-primary
-                        opacity-0 -translate-x-2
-                        group-hover:opacity-100
-                        group-hover:translate-x-0
-                        transition-all duration-300
-                      "
-                    />
-
-                    {item}
-
-                  </a>
-                ))}
+    {item.label}
+  </a>
+))}
 
               </div>
 

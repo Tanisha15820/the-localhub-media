@@ -169,9 +169,14 @@ export default function StakesSection() {
               </span>
             </p>
 
-            <button className="bg-primary text-white px-7 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300">
-              Book a Strategy Call
-            </button>
+          <a
+  href="https://calendly.com/tanisha15820/30min"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hdr-cta-btn bg-primary text-white px-7 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 inline-block"
+>
+  Book a Strategy Call
+</a>
 
           </div>
 

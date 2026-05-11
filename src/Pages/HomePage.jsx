@@ -11,6 +11,7 @@ import ServicesSection from "../components/ServicesSection";
 import StakesSection from "../components/StakesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import Reveal from "../components/Reveal";
+import { Link } from "react-router-dom";
 
 const featureItems = [
   "Brand Identity",
@@ -438,9 +439,9 @@ export default function HomePage() {
   Ready For Strategy Call
   <span style={{ fontSize: "1rem" }}>→</span>
 </a>
-                <button className="hero-btn-secondary">
-                  Book A Brand Performance Audit
-                </button>
+               <Link to="/contact" className="hero-btn-secondary">
+  Book A Brand Performance Audit
+</Link>
               </div>
 
             </div>

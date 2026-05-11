@@ -43,17 +43,17 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="min-h-screen bg-bgMain py-20 px-6 font-main overflow-hidden relative">
+    <section className="min-h-screen bg-bgMain py-16 md:py-20 px-4 sm:px-6 font-main overflow-hidden relative">
 
       {/* Background Glow */}
-      <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-blue-400/10 blur-[120px] rounded-full" />
+      <div className="absolute top-[-200px] left-[-200px] w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-primary/10 blur-[120px] rounded-full" />
+      <div className="absolute bottom-[-200px] right-[-200px] w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-blue-400/10 blur-[120px] rounded-full" />
 
       <div className="max-w-6xl mx-auto relative z-10">
 
         {/* HEADER */}
         <Reveal>
-          <div className="max-w-3xl mx-auto mb-16">
+          <div className="max-w-3xl mx-auto mb-12 md:mb-16">
             <SectionHeader
               tag="Contact Us"
               title="Let's Turn Your"
@@ -64,22 +64,23 @@ export default function ContactPage() {
           </div>
         </Reveal>
 
-        <div className="grid lg:grid-cols-2 gap-10 items-start">
+        {/* GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-start">
 
           {/* LEFT INFO */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
 
             <Reveal delay={100}>
-              <div className="bg-card border border-black/5 rounded-3xl p-7 hover:shadow-xl transition duration-500">
-                <div className="flex items-start gap-4">
-                  <div className="p-4 rounded-2xl bg-primary/10">
-                    <Mail className="text-primary" size={26} />
+              <div className="bg-card border border-black/5 rounded-2xl md:rounded-3xl p-5 md:p-7 hover:shadow-xl transition duration-500">
+                <div className="flex items-start gap-3 md:gap-4">
+                  <div className="p-3 md:p-4 rounded-2xl bg-primary/10">
+                    <Mail className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-textPrimary mb-2">
+                    <h3 className="text-lg md:text-xl font-semibold text-textPrimary mb-1 md:mb-2">
                       Email Us
                     </h3>
-                    <p className="text-textSecondary">
+                    <p className="text-textSecondary text-sm md:text-base break-all">
                       info@thelocalhubmedia.com
                     </p>
                   </div>
@@ -88,33 +89,39 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="bg-card border border-black/5 rounded-3xl p-7 hover:shadow-xl transition duration-500">
-                <div className="flex items-start gap-4">
-                  <div className="p-4 rounded-2xl bg-primary/10">
-                    <Phone className="text-primary" size={26} />
+              <div className="bg-card border border-black/5 rounded-2xl md:rounded-3xl p-5 md:p-7 hover:shadow-xl transition duration-500">
+                <div className="flex items-start gap-3 md:gap-4">
+                  <div className="p-3 md:p-4 rounded-2xl bg-primary/10">
+                    <Phone className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-textPrimary mb-2">
+                    <h3 className="text-lg md:text-xl font-semibold text-textPrimary mb-1 md:mb-2">
                       Call Us
                     </h3>
-                    <p className="text-textSecondary">+1 437-313-5874</p>
-                    <p className="text-textSecondary">+91 9999887009</p>
+                    <p className="text-textSecondary text-sm md:text-base">
+                      +1 437-313-5874
+                    </p>
+                    <p className="text-textSecondary text-sm md:text-base">
+                      +91 9999887009
+                    </p>
                   </div>
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={300}>
-              <div className="bg-card border border-black/5 rounded-3xl p-7 hover:shadow-xl transition duration-500">
-                <div className="flex items-start gap-4">
-                  <div className="p-4 rounded-2xl bg-primary/10">
-                    <MapPin className="text-primary" size={26} />
+              <div className="bg-card border border-black/5 rounded-2xl md:rounded-3xl p-5 md:p-7 hover:shadow-xl transition duration-500">
+                <div className="flex items-start gap-3 md:gap-4">
+                  <div className="p-3 md:p-4 rounded-2xl bg-primary/10">
+                    <MapPin className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-textPrimary mb-2">
+                    <h3 className="text-lg md:text-xl font-semibold text-textPrimary mb-1 md:mb-2">
                       Location
                     </h3>
-                    <p className="text-textSecondary">Delhi, India</p>
+                    <p className="text-textSecondary text-sm md:text-base">
+                      Delhi, India
+                    </p>
                   </div>
                 </div>
               </div>
@@ -124,22 +131,21 @@ export default function ContactPage() {
 
           {/* FORM */}
           <Reveal delay={150}>
-            <div className="bg-card border border-black/5 rounded-[32px] p-8 md:p-10 shadow-xl backdrop-blur-sm">
+            <div className="bg-card border border-black/5 rounded-2xl md:rounded-[32px] p-6 md:p-10 shadow-xl backdrop-blur-sm">
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
 
                 {/* NAME */}
                 <div>
                   <label className="text-sm font-medium text-textPrimary block mb-2">
                     Full Name <span className="text-red-500">*</span>
                   </label>
-
                   <input
                     type="text"
                     name="name"
                     required
                     placeholder="Enter your name"
-                    className="w-full px-5 py-4 rounded-2xl bg-white border border-black/10 outline-none focus:border-primary transition"
+                    className="w-full px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-white border border-black/10 outline-none focus:border-primary transition"
                   />
                 </div>
 
@@ -148,13 +154,12 @@ export default function ContactPage() {
                   <label className="text-sm font-medium text-textPrimary block mb-2">
                     Email Address <span className="text-red-500">*</span>
                   </label>
-
                   <input
                     type="email"
                     name="email"
                     required
                     placeholder="Enter your email"
-                    className="w-full px-5 py-4 rounded-2xl bg-white border border-black/10 outline-none focus:border-primary transition"
+                    className="w-full px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-white border border-black/10 outline-none focus:border-primary transition"
                   />
                 </div>
 
@@ -163,12 +168,11 @@ export default function ContactPage() {
                   <label className="text-sm font-medium text-textPrimary block mb-2">
                     Phone Number
                   </label>
-
                   <input
                     type="tel"
                     name="phone"
                     placeholder="Enter your phone number"
-                    className="w-full px-5 py-4 rounded-2xl bg-white border border-black/10 outline-none focus:border-primary transition"
+                    className="w-full px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-white border border-black/10 outline-none focus:border-primary transition"
                   />
                 </div>
 
@@ -177,13 +181,12 @@ export default function ContactPage() {
                   <label className="text-sm font-medium text-textPrimary block mb-2">
                     Message <span className="text-red-500">*</span>
                   </label>
-
                   <textarea
                     name="message"
                     required
                     placeholder="Tell us about your project"
                     rows="5"
-                    className="w-full px-5 py-4 rounded-2xl bg-white border border-black/10 outline-none focus:border-primary transition resize-none"
+                    className="w-full px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-white border border-black/10 outline-none focus:border-primary transition resize-none"
                   />
                 </div>
 
@@ -191,7 +194,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-primary text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 hover:scale-[1.02] transition duration-300"
+                  className="w-full bg-primary text-white py-3 md:py-4 rounded-xl md:rounded-2xl font-semibold flex items-center justify-center gap-2 hover:scale-[1.02] transition duration-300 text-sm md:text-base"
                 >
                   {loading ? "Sending..." : (
                     <>
@@ -203,7 +206,7 @@ export default function ContactPage() {
 
                 {/* SUCCESS */}
                 {success && (
-                  <div className="flex items-center gap-2 text-green-600 bg-green-50 border border-green-200 rounded-2xl px-4 py-3 mt-4">
+                  <div className="flex items-center gap-2 text-green-600 bg-green-50 border border-green-200 rounded-xl md:rounded-2xl px-4 py-3 mt-4">
                     <CheckCircle2 size={20} />
                     <p className="text-sm font-medium">
                       Message sent successfully!

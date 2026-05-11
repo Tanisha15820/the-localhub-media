@@ -1,11 +1,16 @@
-
 import Reveal from "./Reveal";
 
-export default function SectionHeader({ tag, title, highlight, subtitle }) {
+export default function SectionHeader({
+  tag,
+  title,
+  highlight,
+  endText,
+  subtitle,
+}) {
   return (
     <div className="bs-header">
 
-      {/* 1. Tag pill */}
+      {/* Tag */}
       <Reveal>
         <div className="bs-pill">
           <span className="bs-pill-dot" />
@@ -13,15 +18,14 @@ export default function SectionHeader({ tag, title, highlight, subtitle }) {
         </div>
       </Reveal>
 
-      {/* 2. Headline */}
+      {/* Heading */}
       <Reveal delay={120}>
         <h2 className="bs-headline">
-          {title} <br />
-          <em>{highlight}</em>
+          {title} <em>{highlight}</em> {endText}
         </h2>
       </Reveal>
 
-      {/* 3. Subtitle */}
+      {/* Subtitle */}
       <Reveal delay={240}>
         <p className="bs-subline">{subtitle}</p>
       </Reveal>

@@ -441,12 +441,21 @@ export default function ProblemSection() {
       <section className="prob-section">
 
         <Reveal>
-          <SectionHeader
+          {/* <SectionHeader
             tag="The Problem"
             title="Most D2C brands are losing"
             highlight="money on their digital presence."
             subtitle="Not because they're not working hard enough. Because they're working in silos."
-          />
+          /> */}
+          <div className="max-w-6xl mx-auto">
+          <SectionHeader
+  tag="The Problem"
+  title="Most D2C brands are"
+  highlight="losing money"
+  endText="on their digital presence."
+  subtitle="Not because they're not working hard enough. Because they're working in silos."
+/>
+</div>
         </Reveal>
 
         <div className="prob-row">
@@ -486,7 +495,7 @@ export default function ProblemSection() {
           ))}
         </div>
 
-        {/* 🔥 RESTORED BOTTOM STORY BLOCK */}
+        {/*  RESTORED BOTTOM STORY BLOCK */}
         <Reveal>
           <div className="bottom-text">
             <div className="bottom-main">

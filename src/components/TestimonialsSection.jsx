@@ -341,7 +341,7 @@ export default function TestimonialsSection() {
 
         .tc-wrap {
           font-family: 'Poppins', sans-serif;
-          background: #F5F0E8;
+          background: bgMain;
           padding: 88px 40px;
         }
 

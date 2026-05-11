@@ -414,7 +414,7 @@ function ToolsMarquee() {
 
 export default function ServicesSection() {
   return (
-    <section style={{ background: "#F5F0E8", padding: "80px 20px" }}>
+    <section style={{ background: "#fff", padding: "80px 20px" }}>
 
       {/* HEADER */}
       <SectionHeader

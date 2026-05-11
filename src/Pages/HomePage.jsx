@@ -475,7 +475,7 @@ export default function HomePage() {
         <Reveal delay={50}><ServicesSection /></Reveal>
         <Reveal delay={50}><StakesSection /></Reveal>
         <Reveal delay={50}><ContactCTA /></Reveal>
-        <Footer />
+       
 
       </div>
     </>

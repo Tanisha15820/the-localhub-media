@@ -390,7 +390,7 @@ export default function BrandsSection() {
       <style>{`
         .bs-section {
           width: 100%;
-          background: #F5F0E8;
+          background: #fff;
           padding: 90px 20px 70px;
           box-sizing: border-box;
           overflow: hidden;
@@ -591,11 +591,11 @@ export default function BrandsSection() {
         {/* HEADER */}
         <div ref={headerRef} style={revealStyle}>
           <SectionHeader
-            tag="Brands"
-            title="Trusted by Global"
-            highlight="Brands."
-            subtitle="As a leading digital marketing company in India, ThelocalHub Media works with global brands to deliver consistent, growth-focused results."
-          />
+  tag="Brands"
+  title="Trusted by"
+  highlight="Global Brands."
+  subtitle="As a leading digital marketing company in India, ThelocalHub Media works with global brands to deliver consistent, growth-focused results."
+/>
         </div>
 
         {/* CAROUSEL */}

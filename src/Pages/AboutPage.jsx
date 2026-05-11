@@ -283,7 +283,7 @@ export default function AboutPage() {
               </span>
 
               <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.15] max-w-3xl">
-                [Founder Name]
+                Kush Gupta
               </h2>
 
               <p className="text-white/80 text-lg mt-3 font-medium">

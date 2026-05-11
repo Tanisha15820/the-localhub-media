@@ -447,15 +447,18 @@ function Step({ step, index, isLast }) {
 
 export default function PlanSection() {
   return (
-    <section className="py-24 px-6 bg-[#F5F0E8]">
-      <div className="max-w-3xl mx-auto">
+    <section className="py-24 px-6 bg-bgMain">
+      {/* <div className="max-w-3xl mx-auto"> */}
+      <div className="max-w-6xl mx-auto">
 
-        {/* Header — SectionHeader has Reveal inside */}
+        <div className="max-w-6xl mx-auto">
         <SectionHeader
           tag="The plan"
           title="A complete growth system"
           highlight="built in three moves."
         />
+        </div>
+        
 
         {/* Steps — each animates in/out individually */}
         <div className="relative">

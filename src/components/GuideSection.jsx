@@ -130,19 +130,28 @@ export default function GuideSection() {
   return (
     <section className="relative bg-bgMain py-20 px-6 font-main overflow-hidden">
 
-      {/* 🌟 ambient glow background */}
+      {/*  ambient glow background */}
       <div className="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] bg-blue-400/10 blur-[120px] animate-pulse" />
       <div className="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-purple-400/10 blur-[120px] animate-pulse" />
 
       <div className="max-w-6xl mx-auto relative z-10">
 
         {/* HEADER */}
-        <SectionHeader
+        {/* <SectionHeader
           tag="The Guide"
           title="We've helped D2C brands go from"
           highlight="invisible to inevitable."
           subtitle=""
-        />
+        /> */}
+        <div className="max-w-6xl mx-auto">
+  <SectionHeader
+    tag="The Guide"
+    title="We've helped D2C brands go from"
+    highlight="invisible"
+    endText="to inevitable."
+    subtitle=""
+  />
+</div>
 
         {/* CARDS GRID */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
@@ -162,7 +171,7 @@ export default function GuideSection() {
                   overflow-hidden animate-float"
                 >
 
-                  {/* ✨ shine effect */}
+                  {/*  shine effect */}
                   <div className="absolute inset-0 before:absolute before:content-[''] before:top-0 before:left-[-100%] before:w-[60%] before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:transition-all before:duration-700 group-hover:before:left-[120%]" />
 
                   {/* ICON */}

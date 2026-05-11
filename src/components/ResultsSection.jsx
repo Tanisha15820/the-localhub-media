@@ -209,16 +209,25 @@ export default function ResultsSection() {
         }
       `}</style>
 
-      <section className="rs" style={{ width: "100%", background: "#F5F0E8", padding: "90px 20px 80px", boxSizing: "border-box" }}>
+      <section className="rs" style={{ width: "100%", background: "#fff", padding: "90px 20px 80px", boxSizing: "border-box" }}>
         <div style={{ maxWidth: 1260, margin: "0 auto" }}>
 
           {/* HEADER */}
-          <SectionHeader
+          {/* <SectionHeader
             tag="Results"
             title="Numbers that don't need"
             highlight="explanation."
             subtitle="Real outcomes from real brands — across AI marketing, branding, and performance growth."
-          />
+          /> */}
+
+         <div className="max-w-6xl mx-auto">
+          <SectionHeader
+  tag="Results"
+  title="Numbers that don't need"
+  highlight="explanation."
+  subtitle="Real outcomes from real brands — across AI marketing, branding, and performance growth."
+/>
+</div>
 
           {/* TOP GRID */}
           <div className="rs-top-grid">

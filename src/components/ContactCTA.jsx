@@ -70,7 +70,7 @@ export default function CTASection() {
         <Reveal delay={100}>
           <div className="mt-8">
  <a
-  href="https://calendly.com/tanisha15820/30min"
+  href=" https://calendly.com/connect-kushgupta/screening-meeting"
   target="_blank"
   rel="noopener noreferrer"
   className="hdr-cta-btn inline-block bg-primary text-white px-7 py-3 rounded-full text-sm font-semibold shadow-md"

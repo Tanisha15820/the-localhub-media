@@ -431,7 +431,7 @@ export default function HomePage() {
               {/* CTAs */}
               <div className="hero-animate hero-cta-row-light" style={{ animationDelay: "0.45s", display: "flex", flexWrap: "wrap", gap: 14 }}>
                 <a
-  href="https://calendly.com/tanisha15820/30min"
+  href=" https://calendly.com/connect-kushgupta/screening-meeting"
   target="_blank"
   rel="noopener noreferrer"
   className="hero-btn-primary"

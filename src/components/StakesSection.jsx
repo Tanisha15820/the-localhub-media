@@ -170,7 +170,7 @@ export default function StakesSection() {
             </p>
 
           <a
-  href="https://calendly.com/tanisha15820/30min"
+  href=" https://calendly.com/connect-kushgupta/screening-meeting"
   target="_blank"
   rel="noopener noreferrer"
   className="hdr-cta-btn bg-primary text-white px-7 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 inline-block"

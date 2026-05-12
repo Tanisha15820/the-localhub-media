@@ -168,7 +168,8 @@ function Header() {
             Ready For Strategy Call
           </Link> */}
  <a
-  href="https://calendly.com/tanisha15820/30min"
+  // href="https://calendly.com/tanisha15820/30min"
+   href=" https://calendly.com/connect-kushgupta/screening-meeting"
   target="_blank"
   rel="noopener noreferrer"
   className="hdr-cta-btn ml-4 text-sm font-semibold px-5 py-2.5"

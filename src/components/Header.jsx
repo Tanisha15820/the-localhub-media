@@ -1,227 +1,448 @@
 
 
+// import { Link, useLocation } from "react-router-dom";
+// import { useEffect, useState } from "react";
+
+// const navLinks = [
+//   { label: "Home",      to: "/" },
+//   { label: "Services",  to: "/services" },
+//   { label: "About",     to: "/about" },
+//   { label: "Contact",   to: "/contact" },
+// ];
+
+// function Header() {
+//   const [scrolled, setScrolled] = useState(false);
+//   const [menuOpen, setMenuOpen] = useState(false);
+//   const location               = useLocation();
+//   const isHome                 = location.pathname === "/";
+
+//   useEffect(() => {
+//     const handleScroll = () => setScrolled(window.scrollY > 40);
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   useEffect(() => { setMenuOpen(false); }, [location.pathname]);
+
+//   useEffect(() => {
+//     document.body.style.overflow = menuOpen ? "hidden" : "";
+//     return () => { document.body.style.overflow = ""; };
+//   }, [menuOpen]);
+
+//   const isTransparent = isHome && !scrolled && !menuOpen;
+
+//   return (
+//     <>
+//       <style>{`
+//         .hdr-mobile-menu {
+//           position: fixed;
+//           inset: 0;
+//           top: 0;
+//           z-index: 49;
+//           background: #0f0604;
+//           display: flex;
+//           flex-direction: column;
+//           padding: 100px 32px 48px;
+//           transform: translateX(100%);
+//           transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+//         }
+//         .hdr-mobile-menu.open {
+//           transform: translateX(0);
+//         }
+//         .hdr-ham span {
+//           display: block;
+//           height: 2px;
+//           border-radius: 2px;
+//           transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+//           transform-origin: center;
+//         }
+//         .hdr-ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 24px !important; }
+//         .hdr-ham.open span:nth-child(2) { opacity: 0; }
+//         .hdr-ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 24px !important; }
+//         .hdr-nav-link {
+//           font-size: 2rem;
+//           font-weight: 800;
+//           color: rgba(255,255,255,0.55);
+//           text-decoration: none;
+//           letter-spacing: -0.03em;
+//           font-family: 'Poppins', sans-serif;
+//           transition: color 0.2s;
+//           padding: 12px 0;
+//           border-bottom: 1px solid rgba(255,255,255,0.06);
+//           display: block;
+//         }
+//         .hdr-nav-link:hover,
+//         .hdr-nav-link.active { color: #D97757; }
+//         .hdr-nav-link:last-of-type { border-bottom: none; }
+//         .hdr-cta-btn {
+//   position: relative;
+//   overflow: hidden;
+//   isolation: isolate;
+
+//   background: #D97757;
+//   color: #fff;
+
+//   border-radius: 12px;
+
+//   transition: all 0.3s ease;
+
+//   box-shadow: 0 8px 28px rgba(217,119,87,0.28);
+// }
+
+// .hdr-cta-btn::before {
+//   content: "";
+//   position: absolute;
+
+//   width: 20px;
+//   height: 20px;
+
+//   border-radius: 50%;
+//   background: #fff;
+
+//   top: 50%;
+//   left: 50%;
+
+//   transform: translate(-50%, -50%) scale(0);
+
+//   transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
+
+//   z-index: -1;
+// }
+
+// .hdr-cta-btn:hover::before {
+//   transform: translate(-50%, -50%) scale(18);
+// }
+
+// .hdr-cta-btn:hover {
+//   color: #D97757;
+//   transform: translateY(-3px);
+//   box-shadow: 0 16px 40px rgba(217,119,87,0.22);
+// }
+//       `}</style>
+
+//       {/* ── HEADER BAR ── */}
+//       <header
+//         className={`
+//           fixed top-0 left-0 right-0 z-50
+//           px-6 md:px-14 py-4
+//           flex items-center justify-between
+//           font-main transition-all duration-300
+//           ${isTransparent
+//             ? "bg-transparent"
+//             : "bg-[#0f0604]/90 backdrop-blur-md shadow-lg"
+//           }
+//         `}
+//       >
+//         {/* Logo */}
+//         <Link
+//           to="/"
+//           className="text-xl font-bold text-primary tracking-tight"
+//           style={{ zIndex: 51, position: "relative" }}
+//         >
+//           ThelocalHub
+//           <span style={{ color: isTransparent ? "#1A1A1A" : "#fff" }}> Media</span>
+//         </Link>
+
+//         {/* Desktop Nav */}
+//         <nav className="hidden md:flex items-center gap-8">
+//           {navLinks.map(({ label, to }) => (
+//             <Link
+//               key={to}
+//               to={to}
+//               className="text-sm font-medium transition-colors duration-200"
+//               style={{
+//                 color: location.pathname === to
+//                   ? "#D97757"
+//                   : isTransparent ? "#1A1A1A" : "rgba(255,255,255,0.8)",
+//               }}
+//               onMouseEnter={e => { if (location.pathname !== to) e.currentTarget.style.color = isTransparent ? "#1A1A1A" : "#fff"; }}
+//               onMouseLeave={e => { if (location.pathname !== to) e.currentTarget.style.color = isTransparent ? "#1A1A1A" : "rgba(255,255,255,0.8)"; }}
+//             >
+//               {label}
+//             </Link>
+//           ))}
+//           {/* <Link
+//             to="/contact"
+//             className="ml-4 bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200"
+//           >
+//             Ready For Strategy Call
+//           </Link> */}
+//  <a
+//   // href="https://calendly.com/tanisha15820/30min"
+//    href=" https://calendly.com/connect-kushgupta/screening-meeting"
+//   target="_blank"
+//   rel="noopener noreferrer"
+//   className="hdr-cta-btn ml-4 text-sm font-semibold px-5 py-2.5"
+//   style={{
+//     textDecoration: "none",
+//     display: "inline-flex",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   }}
+// >
+//   Ready For Strategy Call
+// </a>
+//         </nav>
+
+//         {/* Mobile Hamburger */}
+//         <button
+//           className={`hdr-ham md:hidden flex flex-col gap-[5px] p-1 ${menuOpen ? "open" : ""}`}
+//           style={{ zIndex: 51, position: "relative", cursor: "pointer", background: "none", border: "none" }}
+//           onClick={() => setMenuOpen(o => !o)}
+//           aria-label={menuOpen ? "Close menu" : "Open menu"}
+//         >
+//           <span style={{ width: 24, background: isTransparent ? "#1A1A1A" : "#fff" }} />
+//           <span style={{ width: 24, background: isTransparent ? "#1A1A1A" : "#fff" }} />
+//           <span style={{ width: 16, background: isTransparent ? "#1A1A1A" : "#fff" }} />
+//         </button>
+//       </header>
+
+//       {/* ── MOBILE FULL-SCREEN MENU ── */}
+//       <div className={`hdr-mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
+//         <nav style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+//           {navLinks.map(({ label, to }) => (
+//             <Link
+//               key={to}
+//               to={to}
+//               className={`hdr-nav-link ${location.pathname === to ? "active" : ""}`}
+//             >
+//               {label}
+//             </Link>
+//           ))}
+//         </nav>
+
+//         {/* Mobile CTA */}
+//         <div style={{ marginTop: "auto", paddingTop: 32 }}>
+//           <Link
+//             to="/contact"
+//             style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "#D97757", color: "#fff", borderRadius: 12, padding: "16px 32px", fontFamily: "'Poppins', sans-serif", fontSize: "1rem", fontWeight: 700, textDecoration: "none", letterSpacing: "-0.01em" }}
+//           >
+//             Get Started →
+//           </Link>
+//           <p style={{ marginTop: 16, textAlign: "center", fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", fontFamily: "'Poppins', sans-serif" }}>
+//             Free strategy call • No commitment
+//           </p>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Header;
+
+
+
+
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { label: "Home",      to: "/" },
-  { label: "Services",  to: "/services" },
-  { label: "About",     to: "/about" },
-  { label: "Contact",   to: "/contact" },
+  { label: "Home", to: "/" },
+  { label: "Services", to: "/services" },
+  { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
 ];
 
 function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const location               = useLocation();
-  const isHome                 = location.pathname === "/";
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => { setMenuOpen(false); }, [location.pathname]);
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
-
-  const isTransparent = isHome && !scrolled && !menuOpen;
 
   return (
     <>
       <style>{`
+        /* ✅ MOBILE MENU UPDATED */
         .hdr-mobile-menu {
           position: fixed;
           inset: 0;
-          top: 0;
           z-index: 49;
-          background: #0f0604;
+
+          background: var(--primary);  /* 🔥 CHANGED HERE */
+
           display: flex;
           flex-direction: column;
           padding: 100px 32px 48px;
+
           transform: translateX(100%);
           transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .hdr-mobile-menu.open {
           transform: translateX(0);
         }
+
         .hdr-ham span {
           display: block;
           height: 2px;
           border-radius: 2px;
-          transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
-          transform-origin: center;
+          transition: transform 0.3s ease, opacity 0.3s ease;
         }
-        .hdr-ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 24px !important; }
-        .hdr-ham.open span:nth-child(2) { opacity: 0; }
-        .hdr-ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 24px !important; }
+
+        .hdr-ham.open span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+          width: 24px !important;
+        }
+
+        .hdr-ham.open span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hdr-ham.open span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+          width: 24px !important;
+        }
+
+        /* NAV LINKS */
         .hdr-nav-link {
           font-size: 2rem;
           font-weight: 800;
-          color: rgba(255,255,255,0.55);
+
+          color: var(--accent);
+
           text-decoration: none;
           letter-spacing: -0.03em;
           font-family: 'Poppins', sans-serif;
+
           transition: color 0.2s;
+
           padding: 12px 0;
-          border-bottom: 1px solid rgba(255,255,255,0.06);
+          border-bottom: 1px solid rgba(255,255,255,0.12);
           display: block;
         }
+
         .hdr-nav-link:hover,
-        .hdr-nav-link.active { color: #D97757; }
-        .hdr-nav-link:last-of-type { border-bottom: none; }
+        .hdr-nav-link.active {
+          color: var(--secondary);
+        }
+
         .hdr-cta-btn {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-
-  background: #D97757;
-  color: #fff;
-
-  border-radius: 12px;
-
-  transition: all 0.3s ease;
-
-  box-shadow: 0 8px 28px rgba(217,119,87,0.28);
-}
-
-.hdr-cta-btn::before {
-  content: "";
-  position: absolute;
-
-  width: 20px;
-  height: 20px;
-
-  border-radius: 50%;
-  background: #fff;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%) scale(0);
-
-  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
-
-  z-index: -1;
-}
-
-.hdr-cta-btn:hover::before {
-  transform: translate(-50%, -50%) scale(18);
-}
-
-.hdr-cta-btn:hover {
-  color: #D97757;
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(217,119,87,0.22);
-}
+          position: relative;
+          overflow: hidden;
+          background: var(--secondary);
+          color: var(--primary);
+          border-radius: 12px;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 28px rgba(32,150,243,0.28);
+        }
       `}</style>
 
-      {/* ── HEADER BAR ── */}
+      {/* HEADER */}
       <header
-        className={`
+        className="
           fixed top-0 left-0 right-0 z-50
           px-6 md:px-14 py-4
           flex items-center justify-between
-          font-main transition-all duration-300
-          ${isTransparent
-            ? "bg-transparent"
-            : "bg-[#0f0604]/90 backdrop-blur-md shadow-lg"
-          }
-        `}
+          font-main
+          bg-white/80 backdrop-blur-xl shadow-sm border-b border-black/5
+        "
       >
-        {/* Logo */}
+        {/* LOGO */}
         <Link
           to="/"
-          className="text-xl font-bold text-primary tracking-tight"
-          style={{ zIndex: 51, position: "relative" }}
+          className="text-xl font-bold tracking-tight"
+          style={{ color: "var(--accent)" }}
         >
-          ThelocalHub
-          <span style={{ color: isTransparent ? "#1A1A1A" : "#fff" }}> Media</span>
+          ThelocalHub{" "}
+          <span style={{ color: "var(--secondary)" }}>Media</span>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map(({ label, to }) => (
             <Link
               key={to}
               to={to}
-              className="text-sm font-medium transition-colors duration-200"
               style={{
-                color: location.pathname === to
-                  ? "#D97757"
-                  : isTransparent ? "#1A1A1A" : "rgba(255,255,255,0.8)",
+                color:
+                  location.pathname === to
+                    ? "var(--secondary)"
+                    : "var(--accent)",
               }}
-              onMouseEnter={e => { if (location.pathname !== to) e.currentTarget.style.color = isTransparent ? "#1A1A1A" : "#fff"; }}
-              onMouseLeave={e => { if (location.pathname !== to) e.currentTarget.style.color = isTransparent ? "#1A1A1A" : "rgba(255,255,255,0.8)"; }}
+              className="text-sm font-medium transition-colors duration-200"
             >
               {label}
             </Link>
           ))}
-          {/* <Link
-            to="/contact"
-            className="ml-4 bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200"
+
+          <a
+            href="https://calendly.com/connect-kushgupta/screening-meeting"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hdr-cta-btn ml-4 text-sm font-semibold px-5 py-2.5"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textDecoration: "none",
+            }}
           >
             Ready For Strategy Call
-          </Link> */}
- <a
-  // href="https://calendly.com/tanisha15820/30min"
-   href=" https://calendly.com/connect-kushgupta/screening-meeting"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="hdr-cta-btn ml-4 text-sm font-semibold px-5 py-2.5"
-  style={{
-    textDecoration: "none",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }}
->
-  Ready For Strategy Call
-</a>
+          </a>
         </nav>
 
-        {/* Mobile Hamburger */}
+        {/* MOBILE HAMBURGER */}
         <button
-          className={`hdr-ham md:hidden flex flex-col gap-[5px] p-1 ${menuOpen ? "open" : ""}`}
-          style={{ zIndex: 51, position: "relative", cursor: "pointer", background: "none", border: "none" }}
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className={`hdr-ham md:hidden flex flex-col gap-[5px] p-1 ${
+            menuOpen ? "open" : ""
+          }`}
+          onClick={() => setMenuOpen((o) => !o)}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+          }}
         >
-          <span style={{ width: 24, background: isTransparent ? "#1A1A1A" : "#fff" }} />
-          <span style={{ width: 24, background: isTransparent ? "#1A1A1A" : "#fff" }} />
-          <span style={{ width: 16, background: isTransparent ? "#1A1A1A" : "#fff" }} />
+          <span style={{ width: 24, background: "var(--accent)" }} />
+          <span style={{ width: 24, background: "var(--accent)" }} />
+          <span style={{ width: 16, background: "var(--accent)" }} />
         </button>
       </header>
 
-      {/* ── MOBILE FULL-SCREEN MENU ── */}
-      <div className={`hdr-mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
+      {/* MOBILE MENU */}
+      <div className={`hdr-mobile-menu ${menuOpen ? "open" : ""}`}>
         <nav style={{ display: "flex", flexDirection: "column", flex: 1 }}>
           {navLinks.map(({ label, to }) => (
             <Link
               key={to}
               to={to}
-              className={`hdr-nav-link ${location.pathname === to ? "active" : ""}`}
+              className={`hdr-nav-link ${
+                location.pathname === to ? "active" : ""
+              }`}
             >
               {label}
             </Link>
           ))}
         </nav>
 
-        {/* Mobile CTA */}
         <div style={{ marginTop: "auto", paddingTop: 32 }}>
           <Link
             to="/contact"
-            style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "#D97757", color: "#fff", borderRadius: 12, padding: "16px 32px", fontFamily: "'Poppins', sans-serif", fontSize: "1rem", fontWeight: 700, textDecoration: "none", letterSpacing: "-0.01em" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "var(--secondary)",
+              color: "var(--primary)",
+              borderRadius: 12,
+              padding: "16px 32px",
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "1rem",
+              fontWeight: 700,
+              textDecoration: "none",
+            }}
           >
             Get Started →
           </Link>
-          <p style={{ marginTop: 16, textAlign: "center", fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", fontFamily: "'Poppins', sans-serif" }}>
-            Free strategy call • No commitment
-          </p>
         </div>
       </div>
     </>

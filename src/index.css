@@ -1,3 +1,9 @@
+
+
+
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -7,13 +13,26 @@
 /* ══════════════════════════════════════
    THEME VARIABLES
 ══════════════════════════════════════ */
-:root {
+/* :root {
   --bg-main:        #F5F0E8;
   --bg-soft:        #EDE8D9;
   --bg-card:        #F0EBE1;
   --text-primary:   #1A1A1A;
   --text-secondary: #8C8C8C;
   --primary:        #D97757;
+} */
+
+:root {
+  --primary: #ffffff;
+  --secondary: #2096f3;
+  --accent: #110429;
+
+  --text-primary: #110429;
+  --text-secondary: #4b5563;
+
+  --bg-main: #ffffff;
+  --bg-soft: #f8fafc;
+  --bg-card: #ffffff;
 }
 
 /* ══════════════════════════════════════
@@ -119,8 +138,10 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(217,119,87,0.10);
-  border: 1px solid rgba(217,119,87,0.25);
+  /* background: rgba(217,119,87,0.10);
+  border: 1px solid rgba(217,119,87,0.25); */
+   background: rgba(32,150,243,0.10);
+  border: 1px solid rgba(32,150,243,0.25);
   border-radius: 999px;
   padding: 6px 18px;
   margin-bottom: 20px;
@@ -132,13 +153,15 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #D97757;
+  /* background: #D97757; */
+  background: var(--secondary);
 }
 
 .bs-pill-text {
   font-size: 12px;
   font-weight: 600;
-  color: #D97757;
+  /* color: #D97757; */
+  color: var(--secondary);
   text-transform: uppercase;
 }
 
@@ -156,15 +179,17 @@ body {
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.04em;
-  color: #111;
+  /* color: #111; */
+  color: var(--accent);
   margin: 0;
    max-width: 28ch;
   margin-inline: auto;
 }
 
 .bs-headline em {
+  /* color: #D97757; */
   font-style: normal;
-  color: #D97757;
+  color: var(--secondary);
 }
 
 .bs-subline {

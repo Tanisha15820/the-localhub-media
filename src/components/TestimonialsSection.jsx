@@ -36,58 +36,36 @@
 //   },
 // ];
 
-// /* 🔥 DRAMATIC REVEAL (snap + tilt + zoom) */
-// function DramaticReveal({ children, delay = 0 }) {
-//   const ref = useRef(null);
-//   const [visible, setVisible] = useState(false);
-
-//   useEffect(() => {
-//     const el = ref.current;
-//     if (!el) return;
-
-//     const obs = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           setVisible(true);
-//           obs.unobserve(el);
-//         }
-//       },
-//       { threshold: 0.2 }
-//     );
-
-//     obs.observe(el);
-//     return () => obs.disconnect();
-//   }, []);
-
-//   return (
-//     <div
-//       ref={ref}
-//       style={{
-//         opacity: visible ? 1 : 0,
-//         transform: visible
-//           ? "scale(1) rotate(0deg)"
-//           : "scale(0.85) rotate(-6deg)",
-
-//         transition: `
-//           opacity 0.55s ease ${delay}ms,
-//           transform 0.65s cubic-bezier(0.2, 1.4, 0.3, 1) ${delay}ms
-//         `,
-//         willChange: "opacity, transform",
-//       }}
-//     >
-//       {children}
-//     </div>
-//   );
-// }
-
 // export default function TestimonialsSection() {
 //   const [activeCard, setActiveCard] = useState(null);
-//   const [expanded, setExpanded] = useState({});
+//   const sectionRef = useRef(null);
+//   const [animate, setAnimate] = useState(false);
 
-//   const toggleExpand = (i, e) => {
-//     e.stopPropagation();
-//     setExpanded((prev) => ({ ...prev, [i]: !prev[i] }));
-//   };
+//   useEffect(() => {
+//   const section = sectionRef.current;
+
+//   const observer = new IntersectionObserver(
+//     ([entry]) => {
+//       if (entry.isIntersecting) {
+//         setAnimate(false);
+
+//         setTimeout(() => {
+//           setAnimate(true);
+//         }, 50);
+//       } else {
+//         // 🔥 IMPORTANT: reset when leaving viewport
+//         setAnimate(false);
+//       }
+//     },
+//     {
+//       threshold: 0.25,
+//     }
+//   );
+
+//   if (section) observer.observe(section);
+
+//   return () => observer.disconnect();
+// }, []);
 
 //   return (
 //     <>
@@ -96,7 +74,7 @@
 
 //         .tc-wrap {
 //           font-family: 'Poppins', sans-serif;
-//           background: #F5F0E8;
+//           background: bgMain;
 //           padding: 88px 40px;
 //         }
 
@@ -109,23 +87,30 @@
 //         }
 
 //         @media (max-width: 900px) {
-//           .tc-grid { grid-template-columns: 1fr; }
+//           .tc-grid {
+//             grid-template-columns: 1fr;
+//           }
+
+//           .tc-wrap {
+//             padding: 80px 20px;
+//           }
 //         }
 
-//        .tc-card {
-//   background: #fff;
-//   border-radius: 16px;
-//   border: 1px solid rgba(0,0,0,0.07);
-//   overflow: hidden;
-//   cursor: pointer;
+//         .tc-card {
+//           background: #fff;
+//           border-radius: 16px;
+//           border: 1px solid rgba(0,0,0,0.07);
+//           overflow: hidden;
+//           cursor: pointer;
 
-//   /* ✅ FIXED HEIGHT STRUCTURE */
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
+//           height: 100%;
+//           display: flex;
+//           flex-direction: column;
 
-//   transition: transform 0.25s ease, box-shadow 0.25s ease;
-// }
+//           transition:
+//             transform 0.3s ease,
+//             box-shadow 0.3s ease;
+//         }
 
 //         .tc-card:hover {
 //           transform: translateY(-10px) scale(1.03);
@@ -151,6 +136,14 @@
 //           justify-content: center;
 //           font-weight: 700;
 //           color: #D97757;
+//           flex-shrink: 0;
+//           transition: all 0.3s ease;
+//         }
+
+//         .tc-avatar img {
+//           width: 100%;
+//           height: 100%;
+//           object-fit: cover;
 //         }
 
 //         .tc-card:hover .tc-avatar {
@@ -167,15 +160,18 @@
 //         .tc-role {
 //           font-size: 0.78rem;
 //           color: #D97757;
+//           margin-top: 2px;
 //         }
 
 //         .tc-body {
 //           padding: 22px;
+//           flex: 1;
 //         }
 
 //         .tc-stars {
 //           color: #f5a623;
 //           margin-bottom: 12px;
+//           font-size: 1.1rem;
 //         }
 
 //         .tc-quote {
@@ -189,6 +185,7 @@
 //           padding: 16px 22px;
 //           display: flex;
 //           justify-content: space-between;
+//           align-items: center;
 //           border-top: 1px solid rgba(0,0,0,0.07);
 //         }
 
@@ -204,12 +201,94 @@
 //           font-size: 0.72rem;
 //           cursor: pointer;
 //           text-decoration: underline;
+//           color: #1A1A1A;
+//         }
+
+//         /* ───────── SAME BELIEF SECTION ANIMATION ───────── */
+
+//         @keyframes spreadLeft {
+//           0% {
+//             opacity: 0;
+//             transform:
+//               translateX(180px)
+//               translateY(40px)
+//               scale(0.2)
+//               rotate(12deg);
+//             filter: blur(12px);
+//           }
+
+//           100% {
+//             opacity: 1;
+//             transform:
+//               translateX(0)
+//               translateY(0)
+//               scale(1)
+//               rotate(0deg);
+//             filter: blur(0);
+//           }
+//         }
+
+//         @keyframes spreadCenter {
+//           0% {
+//             opacity: 0;
+//             transform:
+//               translateY(80px)
+//               scale(0.2);
+//             filter: blur(12px);
+//           }
+
+//           100% {
+//             opacity: 1;
+//             transform:
+//               translateY(0)
+//               scale(1);
+//             filter: blur(0);
+//           }
+//         }
+
+//         @keyframes spreadRight {
+//           0% {
+//             opacity: 0;
+//             transform:
+//               translateX(-180px)
+//               translateY(40px)
+//               scale(0.2)
+//               rotate(-12deg);
+//             filter: blur(12px);
+//           }
+
+//           100% {
+//             opacity: 1;
+//             transform:
+//               translateX(0)
+//               translateY(0)
+//               scale(1)
+//               rotate(0deg);
+//             filter: blur(0);
+//           }
+//         }
+
+//         .pre-animation {
+//           opacity: 0;
+//         }
+
+//         .spread-left.animate {
+//           animation: spreadLeft 1s cubic-bezier(0.22,1,0.36,1) forwards;
+//         }
+
+//         .spread-center.animate {
+//           animation: spreadCenter 1s cubic-bezier(0.22,1,0.36,1) forwards;
+//           animation-delay: 0.15s;
+//         }
+
+//         .spread-right.animate {
+//           animation: spreadRight 1s cubic-bezier(0.22,1,0.36,1) forwards;
+//           animation-delay: 0.3s;
 //         }
 //       `}</style>
 
-//       <section className="tc-wrap">
+//       <section ref={sectionRef} className="tc-wrap">
 
-//         {/* Header stays normal */}
 //         <SectionHeader
 //           tag="Client Results"
 //           title="What our clients"
@@ -217,55 +296,75 @@
 //           subtitle=""
 //         />
 
-//         {/* DRAMATIC CARDS */}
 //         <div className="tc-grid">
 //           {TESTIMONIALS.map((t, i) => (
-//             <DramaticReveal key={i} delay={i * 120}>
-//               <div
-//                 className="tc-card"
-//                 onClick={() =>
-//                   setActiveCard(activeCard === i ? null : i)
+//             <div
+//               key={i}
+//               className={`
+//                 tc-card
+//                 pre-animation
+//                 ${
+//                   i === 0
+//                     ? "spread-left"
+//                     : i === 1
+//                     ? "spread-center"
+//                     : "spread-right"
 //                 }
-//               >
-//                 <div className="tc-header">
-//                   <div className="tc-avatar">
-//                     <img
-//                       src={t.avatar}
-//                       alt={t.name}
-//                       onError={(e) =>
-//                         (e.target.style.display = "none")
-//                       }
-//                     />
-//                     <span>{t.initials}</span>
-//                   </div>
+//                 ${animate ? "animate" : ""}
+//               `}
+//               onClick={() =>
+//                 setActiveCard(activeCard === i ? null : i)
+//               }
+//             >
+//               <div className="tc-header">
 
-//                   <div>
-//                     <div className="tc-name">{t.name}</div>
-//                     <div className="tc-role">{t.role}</div>
-//                   </div>
+//                 <div className="tc-avatar">
+//                   <img
+//                     src={t.avatar}
+//                     alt={t.name}
+//                     onError={(e) =>
+//                       (e.target.style.display = "none")
+//                     }
+//                   />
+//                   <span>{t.initials}</span>
 //                 </div>
 
-//                 <div className="tc-body">
-//                   <div className="tc-stars">
-//                     {"★".repeat(t.stars)}
-//                   </div>
-//                   <p className="tc-quote">{t.quote}</p>
-//                 </div>
-
-//                 <div className="tc-footer">
-//                   <span className="tc-company">{t.company}</span>
-//                   <button className="tc-read-more">
-//                     Read more
-//                   </button>
+//                 <div>
+//                   <div className="tc-name">{t.name}</div>
+//                   <div className="tc-role">{t.role}</div>
 //                 </div>
 //               </div>
-//             </DramaticReveal>
+
+//               <div className="tc-body">
+//                 <div className="tc-stars">
+//                   {"★".repeat(t.stars)}
+//                 </div>
+
+//                 <p className="tc-quote">
+//                   {t.quote}
+//                 </p>
+//               </div>
+
+//               <div className="tc-footer">
+//                 <span className="tc-company">
+//                   {t.company}
+//                 </span>
+
+//                 <button className="tc-read-more">
+//                   Read more
+//                 </button>
+//               </div>
+//             </div>
 //           ))}
 //         </div>
+
 //       </section>
 //     </>
 //   );
 // }
+
+
+
 
 import { useState, useEffect, useRef } from "react";
 import SectionHeader from "./SectionHeader";
@@ -309,30 +408,29 @@ export default function TestimonialsSection() {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-  const section = sectionRef.current;
+    const section = sectionRef.current;
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        setAnimate(false);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimate(false);
 
-        setTimeout(() => {
-          setAnimate(true);
-        }, 50);
-      } else {
-        // 🔥 IMPORTANT: reset when leaving viewport
-        setAnimate(false);
+          setTimeout(() => {
+            setAnimate(true);
+          }, 50);
+        } else {
+          setAnimate(false);
+        }
+      },
+      {
+        threshold: 0.25,
       }
-    },
-    {
-      threshold: 0.25,
-    }
-  );
+    );
 
-  if (section) observer.observe(section);
+    if (section) observer.observe(section);
 
-  return () => observer.disconnect();
-}, []);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -341,7 +439,7 @@ export default function TestimonialsSection() {
 
         .tc-wrap {
           font-family: 'Poppins', sans-serif;
-          background: bgMain;
+          background: #ffffff;
           padding: 88px 40px;
         }
 
@@ -364,9 +462,9 @@ export default function TestimonialsSection() {
         }
 
         .tc-card {
-          background: #fff;
+          background: #f8fcff;
           border-radius: 16px;
-          border: 1px solid rgba(0,0,0,0.07);
+          border: 1px solid rgba(32,150,243,0.08);
           overflow: hidden;
           cursor: pointer;
 
@@ -381,30 +479,31 @@ export default function TestimonialsSection() {
 
         .tc-card:hover {
           transform: translateY(-10px) scale(1.03);
-          box-shadow: 0 22px 60px rgba(217,119,87,0.18);
+          box-shadow: 0 22px 60px rgba(32,150,243,0.12);
         }
 
         .tc-header {
-          background: #F5F0E8;
+          background: #eef7ff;
           padding: 20px 22px;
           display: flex;
           gap: 14px;
-          border-bottom: 1px solid rgba(0,0,0,0.07);
+          border-bottom: 1px solid rgba(32,150,243,0.08);
         }
 
         .tc-avatar {
           width: 54px;
           height: 54px;
           border-radius: 50%;
-          border: 2px solid #D97757;
+          border: 2px solid #2096F3;
           overflow: hidden;
           display: flex;
           align-items: center;
           justify-content: center;
           font-weight: 700;
-          color: #D97757;
+          color: #2096F3;
           flex-shrink: 0;
           transition: all 0.3s ease;
+          background: #fff;
         }
 
         .tc-avatar img {
@@ -414,7 +513,7 @@ export default function TestimonialsSection() {
         }
 
         .tc-card:hover .tc-avatar {
-          background: #D97757;
+          background: #2096F3;
           color: #fff;
         }
 
@@ -422,21 +521,23 @@ export default function TestimonialsSection() {
           font-weight: 700;
           font-size: 0.95rem;
           text-transform: uppercase;
+          color: #110429;
         }
 
         .tc-role {
           font-size: 0.78rem;
-          color: #D97757;
+          color: #2096F3;
           margin-top: 2px;
         }
 
         .tc-body {
           padding: 22px;
           flex: 1;
+          background: #f8fcff;
         }
 
         .tc-stars {
-          color: #f5a623;
+          color: #2096F3;
           margin-bottom: 12px;
           font-size: 1.1rem;
         }
@@ -445,7 +546,7 @@ export default function TestimonialsSection() {
           font-size: 0.85rem;
           line-height: 1.8;
           font-style: italic;
-          color: #444;
+          color: rgba(17,4,41,0.75);
         }
 
         .tc-footer {
@@ -453,11 +554,12 @@ export default function TestimonialsSection() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-top: 1px solid rgba(0,0,0,0.07);
+          border-top: 1px solid rgba(32,150,243,0.08);
+          background: #fafdff;
         }
 
         .tc-company {
-          color: #D97757;
+          color: #2096F3;
           font-weight: 600;
           font-size: 0.78rem;
         }
@@ -468,7 +570,7 @@ export default function TestimonialsSection() {
           font-size: 0.72rem;
           cursor: pointer;
           text-decoration: underline;
-          color: #1A1A1A;
+          color: #110429;
         }
 
         /* ───────── SAME BELIEF SECTION ANIMATION ───────── */
